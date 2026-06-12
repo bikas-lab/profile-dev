@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Strong Is Your Intuition? — Astro Coach by Puneet Nahata</title>
+<meta name="description" content="Your birth chart already knows. Get your personal Intuition Profile — free, in 60 seconds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1e1b4b;
+    --indigo: #312e81;
+    --violet: #4c3fe7;
+    --violet-light: #6366f1;
+    --gold: #d97706;
+    --gold-light: #fbbf24;
+    --cream: #f5f0e8;
+    --cream-dark: #ede8df;
+    --text: #1a1a2e;
+    --muted: #6b6b80;
+    --white: #ffffff;
+    --border: #e2ddd5;
+    --gauge-purple: #a78bfa;
+    --gauge-track: #e0d9f7;
+    --radius: 16px;
+    --shadow: 0 4px 24px rgba(30,27,75,0.10);
+    --shadow-lg: 0 12px 48px rgba(30,27,75,0.16);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ────────────────────────────────── */
+  .hero {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px 24px 0;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px; height: 6px;
+    background: var(--gold-light);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 8vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--violet);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 360px;
+    margin: 0 auto 36px;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  /* ─── SAMPLE PREVIEW CARDS ─────────────────── */
+  .preview-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 24px 32px;
+  }
+  .preview-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 14px;
+    padding: 4px 10px;
+    background: var(--cream-dark);
+    border-radius: 100px;
+  }
+
+  .cards-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .card-dark {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .card-dark::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%);
+  }
+  .card-dark .moon-icon {
+    font-size: 28px;
+    position: absolute;
+    top: 18px; left: 20px;
+    opacity: 0.9;
+  }
+  .card-dark .stars {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-size: 10px;
+    opacity: 0.5;
+    letter-spacing: 4px;
+  }
+  .card-dark h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .card-dark p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+  }
+
+  .card-light {
+    background: var(--white);
+    border: 1.5px solid #f0e9d2;
+    border-radius: var(--radius);
+    padding: 18px 14px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 190px;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-light::before {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 50%;
+    transform: translateX(-50%);
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(251,191,36,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .card-light .level-label {
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    align-self: flex-start;
+  }
+
+  /* Gauge SVG */
+  .gauge-wrap { position: relative; width: 110px; height: 68px; margin: 0 auto; }
+  .gauge-wrap svg { width: 100%; height: auto; overflow: visible; }
+
+  .gauge-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    text-align: center;
+    margin-top: 6px;
+    line-height: 1;
+  }
+  .gauge-desc {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 2px;
+  }
+  .gauge-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .gauge-bar {
+    width: 6px;
+    border-radius: 3px;
+    background: #e0d9f7;
+    transition: background 0.3s;
+  }
+  .gauge-bar.active { background: linear-gradient(to top, #6366f1, #a78bfa); }
+
+  /* ─── FORM SECTION ─────────────────────────── */
+  .form-section {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 20px 32px;
+  }
+
+  .form-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .form-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 0; }
+  .form-row .field { flex: 1; }
+
+  .field { margin-bottom: 10px; }
+
+  .field input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  .field input::placeholder { color: #aaa8b8; }
+  .field input:focus {
+    border-color: var(--violet);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(76,63,231,0.08);
+  }
+
+  .time-wrap { flex: 1; display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+  .time-wrap input[type="time"] {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  .time-wrap input[type="time"]:focus {
+    border-color: var(--violet);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(76,63,231,0.08);
+  }
+  .time-wrap input[type="time"]:disabled {
+    opacity: 0.4; cursor: not-allowed;
+  }
+  .idk-label {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--muted); cursor: pointer;
+    user-select: none; padding-left: 2px;
+  }
+  .idk-label input[type="checkbox"] {
+    width: 15px; height: 15px;
+    accent-color: var(--violet);
+    cursor: pointer; flex-shrink: 0;
+  }
+
+  .astro-question {
+    margin: 16px 0 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .pill-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .pill-group input[type="radio"] { display: none; }
+  .pill-group label {
+    padding: 8px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--cream);
+    user-select: none;
+  }
+  .pill-group input[type="radio"]:checked + label {
+    background: var(--navy);
+    color: var(--white);
+    border-color: var(--navy);
+  }
+  .pill-group label:hover {
+    border-color: var(--violet);
+    color: var(--violet);
+  }
+
+  .btn-cta {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, var(--violet) 0%, #3730a3 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    box-shadow: 0 6px 24px rgba(76,63,231,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+  .btn-cta:hover::after { transform: translateX(100%); }
+  .btn-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 32px rgba(76,63,231,0.45); }
+  .btn-cta:active { transform: translateY(0); }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .form-footer .sep { color: var(--border); }
+
+  /* ─── HONEST PART ──────────────────────────── */
+  .honest-line {
+    max-width: 480px;
+    margin: 8px auto 0;
+    padding: 20px 28px;
+    text-align: center;
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+  }
+  .honest-line strong { color: var(--text); }
+
+  /* ─── AUTHORITY ────────────────────────────── */
+  .authority {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .puneet-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .puneet-avatar {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--navy);
+    flex-shrink: 0;
+    background: var(--navy);
+  }
+  .puneet-avatar-fallback {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--violet));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700; color: var(--white);
+    flex-shrink: 0;
+    border: 3px solid rgba(76,63,231,0.3);
+    letter-spacing: 1px;
+  }
+  .puneet-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .puneet-info p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .stat-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 10px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .stat-box .lbl {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  /* ─── SOCIAL PROOF ─────────────────────────── */
+  .social-proof {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .social-proof p {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .social-proof strong { color: var(--navy); }
+  .app-btns { display: flex; gap: 10px; }
+  .app-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+    background: var(--cream);
+  }
+  .app-btn:hover { border-color: var(--navy); background: var(--white); }
+  .app-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ─── TESTIMONIALS ─────────────────────────── */
+  .testimonials {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 24px 32px;
+  }
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .testi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  .testi-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--white);
+    flex-shrink: 0;
+  }
+  .testi-name { font-weight: 600; font-size: 14px; color: var(--navy); }
+  .testi-meta { font-size: 12px; color: var(--muted); }
+  .stars-row { color: var(--gold-light); font-size: 13px; margin-left: auto; }
+  .testi-body { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+  .testi-body strong { color: var(--text); }
+
+  /* ─── HOW IT WORKS ─────────────────────────── */
+  .how-section {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 24px 32px;
+  }
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+    flex-shrink: 0;
+  }
+  .step-content h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .step-content p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ─── STICKY CTA ───────────────────────────── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .sticky-cta.visible { transform: translateY(0); }
+  .sticky-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 32px;
+    background: transparent;
+    border: 2px solid var(--violet);
+    color: var(--violet);
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .sticky-cta a:hover { background: var(--violet); color: var(--white); }
+
+  /* ─── PRIVACY + QUOTE ──────────────────────── */
+  .footer-section {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 24px 120px;
+    text-align: center;
+  }
+  .privacy-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .privacy-note svg { width: 13px; height: 13px; color: var(--muted); }
+  .footer-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+
+  /* ─── ANIMATIONS ───────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero, .preview-wrap, .form-section, .authority, .testimonials, .how-section {
+    animation: fadeUp 0.6s ease both;
+  }
+  .preview-wrap { animation-delay: 0.1s; }
+  .form-section { animation-delay: 0.2s; }
+
+  /* ─── MOBILE TWEAKS ────────────────────────── */
+  @media (max-width: 380px) {
+    .hero { padding-top: 32px; }
+    .cards-row { gap: 8px; }
+    .stats-grid { gap: 8px; }
+    .form-card { padding: 22px 18px; }
+  }
+
+  /* Needle animation */
+  @keyframes needleSweep {
+    from { transform: rotate(60deg); }
+    to   { transform: rotate(0deg); }
+  }
+  .needle {
+    animation: needleSweep 1.4s 0.6s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+    transform-origin: 55px 66px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    Free Intuition Profile
+  </div>
+  <h1>How strong is your <em>intuition?</em></h1>
+  <p class="hero-sub">
+    Your birth chart already knows. Get your personal <strong>Intuition Profile</strong> — free, in 60 seconds.
+  </p>
+</section>
+
+<!-- PREVIEW CARDS -->
+<div class="preview-wrap">
+  <div class="preview-label">✦ Sample profile</div>
+  <div class="cards-row">
+    <!-- Dark card -->
+    <div class="card-dark">
+      <div class="moon-icon">🌙</div>
+      <div class="stars">· · ·</div>
+      <h3>Your intuition profile</h3>
+      <p>Personal report from your natal chart</p>
+    </div>
+
+    <!-- Gauge card -->
+    <div class="card-light">
+      <div class="level-label">Your intuition level</div>
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 110 68" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <!-- Outer glow track -->
+          <path d="M12 66 A43 43 0 0 1 98 66" stroke="#f0ebff" stroke-width="14" stroke-linecap="round"/>
+          <!-- Track -->
+          <path d="M12 66 A43 43 0 0 1 98 66" stroke="#e5deff" stroke-width="8" stroke-linecap="round"/>
+          <!-- Active fill — high ~78% -->
+          <path d="M12 66 A43 43 0 0 1 98 66" stroke="url(#gaugeGrad)" stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="135" stroke-dashoffset="30"/>
+          <!-- Needle shadow -->
+          <line x1="55" y1="66" x2="24" y2="24"
+                stroke="rgba(217,119,6,0.15)" stroke-width="5" stroke-linecap="round"/>
+          <!-- Needle -->
+          <line class="needle" x1="55" y1="66" x2="24" y2="24"
+                stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Hub ring -->
+          <circle cx="55" cy="66" r="6" fill="white" stroke="#e5deff" stroke-width="2"/>
+          <!-- Hub dot -->
+          <circle cx="55" cy="66" r="3.5" fill="#d97706"/>
+          <!-- Gradient def -->
+          <defs>
+            <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#818cf8"/>
+              <stop offset="100%" stop-color="#6366f1"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="gauge-value">High</div>
+      <div class="gauge-desc">Reading people</div>
+      <div class="gauge-bars">
+        <div class="gauge-bar active" style="height:10px"></div>
+        <div class="gauge-bar active" style="height:14px"></div>
+        <div class="gauge-bar active" style="height:18px"></div>
+        <div class="gauge-bar active" style="height:22px"></div>
+        <div class="gauge-bar active" style="height:20px"></div>
+        <div class="gauge-bar" style="height:14px"></div>
+        <div class="gauge-bar" style="height:10px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM SECTION -->
+<section class="form-section" id="form">
+  <div class="form-card">
+
+    <div class="field">
+      <input type="text" placeholder="Full name" autocomplete="name">
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <input type="date" placeholder="Date of birth">
+      </div>
+      <div class="time-wrap">
+        <input type="time" id="birthTime">
+        <label class="idk-label" for="idk">
+          <input type="checkbox" id="idk" onchange="document.getElementById('birthTime').disabled=this.checked;">
+          I don't know my birth time
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="Place of birth" autocomplete="off">
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <input type="tel" placeholder="WhatsApp number" autocomplete="tel">
+      </div>
+      <div class="field">
+        <input type="email" placeholder="Email address" autocomplete="email">
+      </div>
+    </div>
+
+    <p class="astro-question">Do you already practice astrology?</p>
+    <div class="pill-group">
+      <input type="radio" name="astro" id="a-no" value="no" checked>
+      <label for="a-no">No</label>
+      <input type="radio" name="astro" id="a-learning" value="learning">
+      <label for="a-learning">Learning</label>
+      <input type="radio" name="astro" id="a-yes" value="yes">
+      <label for="a-yes">Yes, I practice</label>
+    </div>
+
+    <button class="btn-cta" onclick="handleSubmit(this)">
+      See yours in 60 seconds &nbsp;→
+    </button>
+
+    <div class="form-footer">
+      <span>Free</span>
+      <span class="sep">·</span>
+      <span>Instant</span>
+      <span class="sep">·</span>
+      <span>Copy sent to your WhatsApp</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- HONEST LINE -->
+<div class="honest-line">
+  It tells you the honest part too — <strong>what blocks your intuition</strong>, not only what flatters you.
+</div>
+
+<!-- AUTHORITY SECTION -->
+<section class="authority">
+  <div class="puneet-row">
+    <img
+      class="puneet-avatar"
+      src="uploads/Hero.png"
+      alt="Puneet Nahata"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+    <div class="puneet-avatar-fallback" style="display:none;">PN</div>
+    <div class="puneet-info">
+      <h3>Puneet Nahata</h3>
+      <p>Creator of Astro-Psychology. 20 years building the system this report reads your chart with.</p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box">
+      <span class="num">20,000+</span>
+      <span class="lbl">consultations</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">5,000+</span>
+      <span class="lbl">students</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">200K+</span>
+      <span class="lbl">app users</span>
+    </div>
+  </div>
+
+  <div class="social-proof">
+    <p><strong>200,000+ people</strong> use the system this report is built on — the Astro Coach app.</p>
+    <div class="app-btns">
+      <a class="app-btn" href="#" aria-label="Download on App Store">
+        <!-- Apple icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a class="app-btn" href="#" aria-label="Get it on Google Play">
+        <!-- Play icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.2.8.22 1.19.04L15.55 12 4.37.2C3.98.02 3.55.04 3.18.24 2.48.65 2 1.43 2 2.28v19.44c0 .85.48 1.63 1.18 2.04zM16.67 13.11l2.5-2.5-13.5-7.8 11 10.3zm2.5-3.5l2.14 1.24c.64.37.64 1.42 0 1.79L19.17 13.9l-2.5-2.5 2.5-2.79zm-3.12 3.79L5.05 23.7l13.5-7.8-2.5-2.5z"/></svg>
+        Google Play
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <h2 class="section-heading">How it works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Enter your birth details</h4>
+        <p>Name, date, time, and place. If you don't know your exact birth time, check the box — we still generate a profile.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>We read your natal chart</h4>
+        <p>The system Puneet built over 20 years analyses your planetary positions and intuitive indicators.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Get your Intuition Profile</h4>
+        <p>Receive a personal report — your intuition level, strengths, and what's blocking you — sent to your WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2 class="section-heading">What people say</h2>
+
+  <div class="testi-card">
+    <div class="testi-top">
+      <div class="testi-avatar" style="background:linear-gradient(135deg,#6366f1,#312e81);">S</div>
+      <div>
+        <div class="testi-name">Sneha R.</div>
+        <div class="testi-meta">Mumbai · App user</div>
+      </div>
+      <div class="stars-row">★★★★★</div>
+    </div>
+    <p class="testi-body">"I was skeptical but the profile was <strong>shockingly accurate</strong>. It described exactly how I sense things before they happen — and explained why I second-guess myself."</p>
+  </div>
+
+  <div class="testi-card">
+    <div class="testi-top">
+      <div class="testi-avatar" style="background:linear-gradient(135deg,#d97706,#92400e);">A</div>
+      <div>
+        <div class="testi-name">Arjun K.</div>
+        <div class="testi-meta">Bangalore · Student</div>
+      </div>
+      <div class="stars-row">★★★★★</div>
+    </div>
+    <p class="testi-body">"It told me the uncomfortable truth — my intuition is strong but <strong>I was blocking it with overthinking</strong>. That one insight changed how I make decisions."</p>
+  </div>
+
+  <div class="testi-card">
+    <div class="testi-top">
+      <div class="testi-avatar" style="background:linear-gradient(135deg,#059669,#064e3b);">P</div>
+      <div>
+        <div class="testi-name">Priya M.</div>
+        <div class="testi-meta">Delhi · Practitioner</div>
+      </div>
+      <div class="stars-row">★★★★★</div>
+    </div>
+    <p class="testi-body">"Even as someone who studies astrology, the depth of Puneet's framework surprised me. <strong>This is not a generic horoscope</strong> — it's genuinely personalised."</p>
+  </div>
+</section>
+
+<!-- FOOTER / QUOTE -->
+<div class="footer-section">
+  <p class="privacy-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+    Your details are used only to build your chart. No spam, ever.
+  </p>
+  <p class="footer-quote">
+    "Your intuition is not something you need to create.<br>It is something you learn to hear."
+    <br><br>— Puneet Nahata
+  </p>
+</div>
+
+<!-- STICKY BOTTOM CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#form">Get my free profile &nbsp;↑</a>
+</div>
+
+<script>
+  // Show sticky CTA after scrolling past the form
+  const stickyCta = document.getElementById('stickyCta');
+  const formEl = document.getElementById('form');
+
+  const observer = new IntersectionObserver(([entry]) => {
+    stickyCta.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0.1 });
+  observer.observe(formEl);
+
+  // Form submit
+  function handleSubmit(btn) {
+    const inputs = document.querySelectorAll('.form-card input[type="text"], .form-card input[type="date"], .form-card input[type="tel"], .form-card input[type="email"]');
+    let valid = true;
+    inputs.forEach(inp => {
+      if (!inp.value.trim()) {
+        inp.style.borderColor = '#ef4444';
+        inp.focus();
+        valid = false;
+      } else {
+        inp.style.borderColor = '';
+      }
+    });
+    if (!valid) { return; }
+    btn.textContent = '✓ Profile sent to WhatsApp!';
+    btn.style.background = 'linear-gradient(135deg, #059669, #064e3b)';
+    btn.style.boxShadow = '0 6px 24px rgba(5,150,105,0.35)';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
