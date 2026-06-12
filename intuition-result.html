@@ -6,32 +6,32 @@
 <title>Your Intuition Profile — Astro Coach</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root {
   --navy:   #1e1b4b;
   --indigo: #312e81;
-  --violet: #4c3fe7;
-  --violet2:#6366f1;
+  --violet: #6254c8;
+  --violet2:#8b7fe8;
   --violet-soft:#ede9fe;
+  --lavender:#c4b5fd;
   --gold:   #b45309;
   --gold-lt:#d97706;
-  --gold-xs:#fef3c7;
-  --cream:  #f7f3ed;
-  --cream2: #ede8df;
+  --cream:  #f8f4ef;
+  --cream2: #f0ebe2;
   --white:  #ffffff;
-  --border: #e4ddd4;
-  --muted:  #6b6b82;
+  --border: #e8e0d5;
+  --muted:  #7c7893;
   --text:   #1a1825;
   --r:      16px;
-  --sh:     0 2px 16px rgba(30,27,75,.08);
-  --sh2:    0 8px 40px rgba(30,27,75,.13);
+  --sh:     0 2px 20px rgba(30,27,75,.06);
+  --sh2:    0 8px 40px rgba(30,27,75,.12);
 }
 
-html { scroll-behavior:smooth; }
-body {
+html{scroll-behavior:smooth}
+body{
   font-family:'DM Sans',sans-serif;
   background:var(--cream);
   color:var(--text);
@@ -39,555 +39,563 @@ body {
   overflow-x:hidden;
 }
 
-/* ── UTIL ── */
-.serif { font-family:'Cormorant Garamond',serif; }
-.muted { color:var(--muted); }
-.tag {
-  display:inline-flex; align-items:center; gap:5px;
-  font-size:10px; font-weight:600; letter-spacing:.07em;
-  text-transform:uppercase; padding:4px 10px;
-  border-radius:100px; border:1px solid var(--border);
-  background:var(--cream2); color:var(--muted);
-}
+.serif{font-family:'Cormorant Garamond',serif}
+.muted{color:var(--muted)}
 
-/* ── HERO HEADER ── */
-.hero-header {
-  background:linear-gradient(160deg,#1a1740 0%,#2d2866 60%,#1e1b4b 100%);
-  padding:48px 24px 56px;
-  text-align:center;
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(150deg,#f8f4ef 0%,#ede8f5 60%,#e8e0f0 100%);
+  padding:48px 32px 56px;
   position:relative;
   overflow:hidden;
 }
-.hero-header::before {
+.hero::before{
   content:'';
-  position:absolute; inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(99,102,241,.18) 0%,transparent 70%);
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(162,130,220,.15) 0%,transparent 65%);
 }
-.hero-header .brand {
-  font-size:12px; font-weight:600; letter-spacing:.1em;
-  text-transform:uppercase; color:rgba(255,255,255,.45);
-  margin-bottom:32px; position:relative;
-}
-
-/* Profile silhouette ring */
-.avatar-ring {
+.hero-inner{
+  max-width:860px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 280px;
+  gap:32px;align-items:center;
   position:relative;
-  width:120px; height:120px;
-  margin:0 auto 24px;
 }
-.avatar-ring svg { width:100%; height:100%; position:absolute; inset:0; }
-.avatar-initials {
-  position:absolute; inset:0;
-  display:flex; align-items:center; justify-content:center;
+.hero-left{}
+.hero-eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--violet);
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-eyebrow::before{content:'✦';font-size:10px}
+.hero-heading{
   font-family:'Cormorant Garamond',serif;
-  font-size:36px; font-weight:600; color:white;
-  z-index:2;
+  font-size:clamp(40px,7vw,60px);
+  font-weight:700;line-height:1.05;
+  color:var(--navy);margin-bottom:16px;
 }
-.ring-pulse {
-  position:absolute; inset:-8px;
-  border-radius:50%;
-  border:1px solid rgba(167,139,250,.3);
-  animation:ringpulse 3s ease-in-out infinite;
+.hero-sub{
+  font-size:14px;color:var(--muted);
+  line-height:1.6;margin-bottom:28px;
+  max-width:340px;
 }
-.ring-pulse2 {
-  position:absolute; inset:-18px;
-  border-radius:50%;
-  border:1px solid rgba(167,139,250,.15);
-  animation:ringpulse 3s 1s ease-in-out infinite;
-}
-@keyframes ringpulse {
-  0%,100%{transform:scale(1);opacity:.6}
-  50%{transform:scale(1.05);opacity:1}
-}
-
-.hero-name {
+.hero-name{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(32px,8vw,48px);
-  font-weight:700; color:#fff;
-  margin-bottom:6px; position:relative;
+  font-size:32px;font-weight:600;
+  color:var(--violet);margin-bottom:20px;
 }
-.hero-title {
-  font-size:13px; color:rgba(255,255,255,.55);
-  letter-spacing:.04em; margin-bottom:28px; position:relative;
+.birth-pills{
+  display:flex;flex-wrap:wrap;gap:10px;
 }
-.birth-pills {
-  display:flex; flex-wrap:wrap; justify-content:center;
-  gap:10px; position:relative;
+.birth-pill{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.7);
+  border:1px solid rgba(162,130,220,.3);
+  border-radius:100px;padding:7px 14px;
+  font-size:12px;color:var(--navy);
+  backdrop-filter:blur(6px);
 }
-.birth-pill {
-  display:flex; align-items:center; gap:6px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:100px; padding:7px 14px;
-  font-size:12px; color:rgba(255,255,255,.8);
-}
-.birth-pill svg { width:13px; height:13px; opacity:.7; }
+.birth-pill svg{width:12px;height:12px;opacity:.6}
+.birth-pill-label{font-size:10px;color:var(--muted);display:block}
 
-/* ── STAR DECOR ── */
-.hstar { position:absolute; border-radius:50%; background:#fff; }
-@keyframes tw { 0%,100%{opacity:.15;transform:scale(.8)} 50%{opacity:.9;transform:scale(1.4)} }
+/* Silhouette portrait */
+.hero-portrait{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.portrait-oval{
+  width:240px;height:300px;
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  background:linear-gradient(160deg,#ddd6f3 0%,#c4b5fd 40%,#a78bfa 100%);
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(139,127,232,.25);
+}
+.portrait-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 60%,rgba(255,255,255,.35) 0%,transparent 70%);
+}
+.portrait-stars{
+  position:absolute;inset:0;
+}
+.pstar{position:absolute;border-radius:50%;background:#fff}
 
-/* ── PAGE WRAP ── */
-.page { max-width:600px; margin:0 auto; padding:0 16px 100px; }
+/* ── PAGE ── */
+.page{max-width:860px;margin:0 auto;padding:0 24px 120px;}
 
 /* ── SECTION CARD ── */
-.card {
+.card{
   background:var(--white);
   border:1px solid var(--border);
-  border-radius:var(--r);
-  padding:24px 20px;
-  margin-top:16px;
+  border-radius:20px;
+  padding:28px 24px;
+  margin-top:20px;
   box-shadow:var(--sh);
 }
-.card-title {
-  display:flex; align-items:center; gap:10px;
-  margin-bottom:20px;
+.card-head{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:24px;
 }
-.card-num {
-  width:28px; height:28px; border-radius:50%;
-  background:var(--navy); color:#fff;
-  font-size:13px; font-weight:700;
-  display:flex; align-items:center; justify-content:center;
+.card-num{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
-.card-title h2 {
+.card-head h2{
   font-family:'Cormorant Garamond',serif;
-  font-size:20px; font-weight:600; color:var(--navy);
+  font-size:22px;font-weight:600;color:var(--navy);
   line-height:1.2;
 }
 
-/* ── BIRTH DETAILS TABLE ── */
-.birth-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:0;
-  border:1px solid var(--border); border-radius:12px;
-  overflow:hidden; margin-bottom:16px;
+/* ── SECTION 1: BIRTH + NATAL ── */
+.s1-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;align-items:start;
 }
-.birth-row {
-  display:contents;
+.natal-chart-wrap{
+  display:flex;align-items:center;justify-content:center;
 }
-.birth-row > div {
-  padding:11px 14px;
-  font-size:13px;
+.birth-table{
+  border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;
+}
+.birth-table-title{
+  background:var(--cream2);padding:10px 16px;
+  font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
   border-bottom:1px solid var(--border);
 }
-.birth-row:last-child > div { border-bottom:none; }
-.birth-row > div:first-child { color:var(--muted); background:var(--cream); }
-.birth-row > div:last-child  { font-weight:500; color:var(--navy); }
+.birth-row{display:flex;border-bottom:1px solid var(--border)}
+.birth-row:last-child{border-bottom:none}
+.birth-row .lbl{
+  width:52%;padding:10px 14px;
+  font-size:12px;color:var(--muted);
+  background:var(--cream);border-right:1px solid var(--border);
+}
+.birth-row .val{
+  flex:1;padding:10px 14px;
+  font-size:12px;font-weight:600;color:var(--navy);
+}
+.natal-note{
+  margin-top:16px;
+  font-size:12px;color:var(--muted);line-height:1.65;
+  padding:12px 16px;background:var(--cream);
+  border-radius:10px;border-left:3px solid var(--violet-soft);
+  grid-column:1/-1;
+}
 
-/* ── NATAL CHART ── */
-.natal-wrap {
-  display:flex; flex-direction:column; align-items:center; gap:16px;
+/* ── SECTION 2: INTUITION LEVEL ── */
+.s2-layout{
+  display:flex;gap:24px;align-items:stretch;
 }
-.natal-note {
-  font-size:12px; color:var(--muted); line-height:1.6;
-  text-align:center; padding:12px 16px;
-  background:var(--cream); border-radius:10px;
-  border-left:3px solid var(--violet-soft);
+.s2-bar-side{
+  display:flex;gap:10px;align-items:stretch;
+  flex-shrink:0;
 }
-
-/* ── INTUITION LEVEL ── */
-.level-layout {
-  display:flex; gap:20px; align-items:stretch;
+.level-labels{
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  padding:4px 0;width:80px;
 }
-.level-bar-col {
-  display:flex; flex-direction:column;
-  gap:4px; width:88px; flex-shrink:0;
+.level-lbl{
+  font-size:10px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--border);
+  display:flex;align-items:center;justify-content:space-between;
 }
-.level-label-row {
-  display:flex; align-items:center; justify-content:space-between;
-  font-size:10px; font-weight:600; text-transform:uppercase;
-  letter-spacing:.06em; color:var(--muted);
-  padding:3px 0;
+.level-lbl.active{color:var(--violet)}
+.level-lbl-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.level-lbl-sub{font-size:9px;font-weight:400;display:block;margin-top:1px;opacity:.7}
+.bar-track{
+  width:26px;min-height:180px;
+  background:#ede9fe;border-radius:20px;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
 }
-.level-label-row.active { color:var(--violet); }
-.level-dot {
-  width:6px; height:6px; border-radius:50%;
-  background:var(--border);
+.bar-fill{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,#5b47d8,#a78bfa,#c4b5fd);
+  border-radius:20px;height:0%;
+  transition:height 1.5s cubic-bezier(.34,1.2,.64,1);
 }
-.level-label-row.active .level-dot { background:var(--violet2); }
-
-.bar-track {
-  flex:1;
-  width:28px; background:#ede9fe; border-radius:20px;
-  position:relative; overflow:hidden;
-  align-self:stretch; min-height:180px;
-}
-.bar-fill {
-  position:absolute; bottom:0; left:0; right:0;
-  background:linear-gradient(to top,#4c3fe7,#a78bfa);
-  border-radius:20px;
-  transition:height 1.4s cubic-bezier(.34,1.2,.64,1);
-}
-.bar-pct {
-  position:absolute; top:50%; left:50%;
-  transform:translate(-50%,-50%);
+.bar-pct{
+  position:absolute;bottom:12px;left:50%;
+  transform:translateX(-50%);
   font-family:'Cormorant Garamond',serif;
-  font-size:16px; font-weight:700; color:#fff;
+  font-size:13px;font-weight:700;color:#fff;
   text-shadow:0 1px 4px rgba(0,0,0,.3);
 }
-
-.level-text-col { flex:1; }
-.level-headline {
+.s2-text{flex:1}
+.s2-headline{
   font-family:'Cormorant Garamond',serif;
-  font-size:22px; font-weight:700; color:var(--navy);
-  line-height:1.2; margin-bottom:10px;
+  font-size:24px;font-weight:700;color:var(--navy);
+  line-height:1.2;margin-bottom:12px;
 }
-.level-desc { font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:16px; }
-.receives-list {
-  display:flex; flex-direction:column; gap:7px;
+.s2-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.s2-receives-label{font-size:12px;color:var(--muted);margin-bottom:10px}
+.receives-list{display:flex;flex-direction:column;gap:8px}
+.receives-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--text);
 }
-.receives-item {
-  display:flex; align-items:center; gap:9px;
-  font-size:13px; color:var(--text);
+.r-icon{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--violet-soft);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
 }
-.receives-item svg { width:16px; height:16px; color:var(--violet2); flex-shrink:0; }
+.r-icon svg{width:13px;height:13px;color:var(--violet)}
 
-/* ── INTUITION SPEAKS ── */
-.channels-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:10px; margin-bottom:16px;
+/* ── SECTION 3: CHANNELS ── */
+.channels-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-bottom:16px;
 }
-.channel-card {
-  background:var(--cream); border-radius:12px;
-  padding:16px 14px;
-  border:1px solid var(--border);
+.channel-card{
+  background:var(--cream);border-radius:14px;
+  padding:18px 16px;border:1px solid var(--border);
   position:relative;
 }
-.channel-card .check {
-  position:absolute; top:10px; right:10px;
-  width:18px; height:18px; border-radius:50%;
+.ch-check{
+  position:absolute;top:12px;right:12px;
+  width:20px;height:20px;border-radius:50%;
   background:var(--violet-soft);
-  display:flex; align-items:center; justify-content:center;
+  display:flex;align-items:center;justify-content:center;
 }
-.channel-card .check svg { width:10px; height:10px; color:var(--violet); }
-.channel-icon { font-size:22px; margin-bottom:8px; }
-.channel-name {
-  font-size:13px; font-weight:600; color:var(--navy);
-  margin-bottom:4px;
+.ch-check svg{width:10px;height:10px;color:var(--violet)}
+.ch-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--white);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;
 }
-.channel-desc { font-size:11px; color:var(--muted); line-height:1.5; }
-.speaks-note {
-  font-size:12px; color:var(--muted);
-  text-align:center; padding:10px;
-  display:flex; align-items:center; justify-content:center; gap:6px;
+.ch-icon svg{width:20px;height:20px;color:var(--violet)}
+.ch-name{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.ch-desc{font-size:12px;color:var(--muted);line-height:1.55}
+.section-note{
+  font-size:12px;color:var(--muted);text-align:center;
+  padding:12px;display:flex;align-items:center;
+  justify-content:center;gap:6px;
 }
-.speaks-note::before { content:'✦'; color:var(--violet2); font-size:10px; }
+.section-note::before{content:'✦';color:var(--violet2);font-size:10px}
 
-/* ── WORKS IN FAVOUR ── */
-.favour-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:10px; margin-bottom:14px;
+/* ── SECTION 4: FAVOUR ── */
+.favour-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;margin-bottom:14px;
 }
-.favour-card {
-  background:var(--cream); border-radius:12px;
-  padding:16px 12px; text-align:center;
+.favour-card{
+  background:var(--cream);border-radius:14px;
+  padding:18px 14px;text-align:center;
   border:1px solid var(--border);
 }
-.favour-icon { font-size:24px; margin-bottom:8px; }
-.favour-name { font-size:12px; font-weight:600; color:var(--navy); margin-bottom:6px; line-height:1.3; }
-.favour-desc { font-size:11px; color:var(--muted); line-height:1.5; }
-.favour-note {
-  font-size:12px; color:var(--muted);
-  display:flex; align-items:flex-start; gap:8px;
-  padding:12px 14px; background:var(--cream);
+.fav-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--white);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;
+}
+.fav-icon svg{width:22px;height:22px;color:var(--violet)}
+.fav-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.fav-desc{font-size:11px;color:var(--muted);line-height:1.55}
+.favour-note{
+  font-size:12px;color:var(--muted);
+  display:flex;align-items:flex-start;gap:8px;
+  padding:12px 14px;background:var(--cream);
   border-radius:10px;
 }
-.favour-note::before { content:'🌟'; flex-shrink:0; }
+.favour-note::before{content:'🌟';flex-shrink:0}
 
-/* ── CLOUDS ── */
-.clouds-list { display:flex; flex-direction:column; gap:0; }
-.cloud-item {
-  display:flex; align-items:flex-start; gap:14px;
-  padding:14px 0;
-  border-bottom:1px solid var(--border);
+/* ── SECTION 5: CLOUDS ── */
+.s5-layout{
+  display:grid;grid-template-columns:1fr 160px;
+  gap:20px;align-items:center;
 }
-.cloud-item:last-child { border-bottom:none; }
-.cloud-icon-wrap {
-  width:36px; height:36px; border-radius:50%;
-  background:var(--cream); border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  font-size:16px; flex-shrink:0;
+.clouds-list{display:flex;flex-direction:column;gap:0}
+.cloud-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:13px 0;border-bottom:1px solid var(--border);
 }
-.cloud-name { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:2px; }
-.cloud-desc { font-size:12px; color:var(--muted); line-height:1.5; }
-.clouds-footer {
-  margin-top:14px; font-size:12px; color:var(--muted);
-  text-align:center; font-style:italic;
+.cloud-item:last-child{border-bottom:none}
+.cloud-icon-wrap{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--cream);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
 }
+.cloud-icon-wrap svg{width:17px;height:17px;color:var(--muted)}
+.cloud-name{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.cloud-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.clouds-img{
+  display:flex;align-items:center;justify-content:center;
+}
+.clouds-footer{
+  margin-top:14px;font-size:12px;color:var(--muted);
+  text-align:center;font-style:italic;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.clouds-footer::before{content:'👁';font-style:normal}
 
-/* ── PATH ── */
-.path-timeline {
-  display:flex; align-items:flex-start; gap:0;
-  position:relative; margin-bottom:14px;
-  overflow-x:auto; padding-bottom:4px;
+/* ── SECTION 6: PATH ── */
+.path-timeline{
+  display:flex;align-items:flex-start;
+  position:relative;margin-bottom:16px;
+  overflow-x:auto;padding-bottom:4px;
 }
-.path-item {
-  flex:1; min-width:80px;
-  display:flex; flex-direction:column; align-items:center;
-  position:relative; text-align:center;
+.path-item{
+  flex:1;min-width:90px;
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;text-align:center;
+  padding:0 4px;
 }
-.path-item:not(:last-child)::after {
+.path-item:not(:last-child)::after{
   content:'';
-  position:absolute; top:18px; left:50%;
-  width:100%; height:1px;
-  background:var(--border);
+  position:absolute;top:20px;left:50%;
+  width:100%;height:1px;
+  background:linear-gradient(90deg,var(--border),var(--violet-soft));
   z-index:0;
 }
-.path-dot {
-  width:36px; height:36px; border-radius:50%;
-  background:var(--cream); border:2px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  font-size:16px; margin-bottom:8px;
-  position:relative; z-index:1;
-  background:var(--white);
+.path-dot{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--white);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;position:relative;z-index:1;
 }
-.path-name { font-size:11px; font-weight:600; color:var(--navy); margin-bottom:4px; line-height:1.3; }
-.path-desc { font-size:10px; color:var(--muted); line-height:1.4; }
-.path-ends {
-  display:flex; justify-content:space-between;
-  font-size:10px; font-weight:600; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--muted);
-  padding-top:8px; border-top:1px dashed var(--border);
-  margin-top:4px;
+.path-dot svg{width:18px;height:18px;color:var(--violet)}
+.path-name{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.path-desc{font-size:10px;color:var(--muted);line-height:1.4}
+.path-ends{
+  display:flex;justify-content:space-between;
+  font-size:10px;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);
+  padding-top:10px;border-top:1px dashed var(--border);margin-top:4px;
 }
 
-/* ── ESSENCE ── */
-.essence-hero {
-  background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);
-  border-radius:14px; padding:28px 24px;
-  text-align:center; color:#fff;
-  position:relative; overflow:hidden;
-  margin-bottom:16px;
+/* ── SECTION 7: ESSENCE ── */
+.s7-layout{
+  display:grid;grid-template-columns:180px 1fr;
+  gap:28px;align-items:center;margin-bottom:20px;
 }
-.essence-hero::before {
-  content:'';
-  position:absolute;
-  top:-40px;left:50%;transform:translateX(-50%);
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(99,102,241,.25) 0%,transparent 70%);
+.compass-wrap{
+  display:flex;align-items:center;justify-content:center;
 }
-.essence-eyebrow {
-  font-size:10px; font-weight:600; letter-spacing:.14em;
-  text-transform:uppercase; color:rgba(255,255,255,.45);
-  margin-bottom:10px; position:relative;
-}
-.essence-name {
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px; font-weight:700; color:#fff;
-  margin-bottom:8px; position:relative;
-  letter-spacing:.02em;
-}
-.essence-sub {
-  font-size:13px; color:rgba(255,255,255,.6);
-  margin-bottom:20px; position:relative;
-}
-.essence-compass { font-size:48px; margin-bottom:16px; position:relative; }
-.essence-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1px; background:rgba(255,255,255,.1);
-  border-radius:10px; overflow:hidden;
-  position:relative;
-}
-.essence-col {
-  padding:14px 10px;
-  background:rgba(255,255,255,.04);
-  text-align:left;
-}
-.essence-col-title {
-  font-size:10px; font-weight:600; letter-spacing:.07em;
-  text-transform:uppercase; color:rgba(255,255,255,.4);
+.essence-text-side{}
+.essence-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--violet);
   margin-bottom:8px;
 }
-.essence-col ul { list-style:none; }
-.essence-col li {
-  font-size:11px; color:rgba(255,255,255,.75);
-  padding:3px 0;
-  display:flex; align-items:center; gap:5px;
+.essence-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:700;color:var(--navy);
+  margin-bottom:6px;letter-spacing:.02em;
 }
-.essence-col li::before { content:'·'; color:rgba(167,139,250,.8); }
-.essence-note {
-  font-size:12px; color:var(--muted);
-  text-align:center; padding:12px;
-  display:flex; align-items:center; justify-content:center; gap:6px;
+.essence-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6}
+.essence-cols{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border-radius:12px;overflow:hidden;
 }
-.essence-note::before { content:'✦'; color:var(--gold-lt); }
+.essence-col{
+  background:var(--cream);padding:14px 12px;
+}
+.essence-col-title{
+  font-size:10px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--violet);
+  margin-bottom:8px;
+}
+.essence-col ul{list-style:none}
+.essence-col li{
+  font-size:11px;color:var(--navy);
+  padding:3px 0;display:flex;align-items:center;gap:5px;
+}
+.essence-col li::before{content:'·';color:var(--violet2);font-size:14px}
+.essence-note{
+  margin-top:14px;font-size:12px;color:var(--muted);
+  text-align:center;padding:12px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.essence-note::before{content:'✦';color:var(--gold-lt)}
 
-/* ── RECOMMENDATIONS ── */
-.reco-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.reco-card {
-  border-radius:14px; overflow:hidden;
-  border:1px solid var(--border);
-}
-.reco-top {
-  padding:18px 16px 14px;
+/* ── SECTION 8: RECOMMENDATIONS ── */
+.reco-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.reco-card{border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.reco-top{
+  padding:20px 18px 16px;
   background:linear-gradient(135deg,#1e1b4b,#312e81);
   color:#fff;
 }
-.reco-top.gold-top {
-  background:linear-gradient(135deg,#78350f,#b45309);
+.reco-top.gold-top{background:linear-gradient(135deg,#78350f,#b45309)}
+.reco-eyebrow{
+  font-size:9px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;
 }
-.reco-eyebrow {
-  font-size:9px; font-weight:600; letter-spacing:.1em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.5); margin-bottom:6px;
-}
-.reco-title {
+.reco-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:16px; font-weight:700; color:#fff;
-  margin-bottom:6px; line-height:1.3;
+  font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3;
 }
-.reco-desc { font-size:11px; color:rgba(255,255,255,.65); line-height:1.5; }
-.reco-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
-.reco-tag {
-  padding:3px 9px; border-radius:100px;
-  font-size:10px; font-weight:500;
-  background:rgba(255,255,255,.12);
-  color:rgba(255,255,255,.8);
+.reco-desc{font-size:11px;color:rgba(255,255,255,.65);line-height:1.5}
+.reco-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.reco-tag{
+  padding:3px 9px;border-radius:100px;
+  font-size:10px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);
 }
-.reco-btn {
-  display:block; width:100%;
-  padding:12px 14px;
-  background:var(--white); border:none;
+.reco-btn{
+  display:block;width:100%;padding:13px 14px;
+  background:var(--white);border:none;
   font-family:'DM Sans',sans-serif;
-  font-size:12px; font-weight:600;
-  cursor:pointer; text-align:center;
+  font-size:12px;font-weight:600;cursor:pointer;text-align:center;
   transition:background .2s;
 }
-.reco-btn:hover { background:var(--cream); }
-.reco-btn.violet-btn { color:var(--violet); }
-.reco-btn.gold-btn   { color:var(--gold); }
+.reco-btn:hover{background:var(--cream)}
+.reco-btn.violet-btn{color:var(--violet)}
+.reco-btn.gold-btn{color:var(--gold)}
 
 /* ── FOOTER QUOTE ── */
-.footer-quote {
-  text-align:center; padding:32px 24px 40px;
+.footer-quote{
+  text-align:center;padding:36px 24px 48px;
   font-family:'Cormorant Garamond',serif;
-  font-style:italic; font-size:17px;
-  color:var(--muted); line-height:1.75;
+  font-style:italic;font-size:18px;
+  color:var(--muted);line-height:1.8;
+  border-top:1px solid var(--border);margin:20px 24px 0;
+  max-width:860px;margin-left:auto;margin-right:auto;
 }
-.footer-quote span { display:block; font-size:12px; font-style:normal; margin-top:12px; font-family:'DM Sans',sans-serif; letter-spacing:.04em; }
+.footer-quote span{
+  display:block;font-size:12px;font-style:normal;
+  margin-top:10px;font-family:'DM Sans',sans-serif;
+  letter-spacing:.05em;color:var(--violet);
+}
 
 /* ── STICKY CTA ── */
-.sticky-cta {
-  position:fixed; bottom:0; left:0; right:0;
-  background:rgba(247,243,237,.95);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  padding:14px 20px;
-  border-top:1px solid var(--border);
-  z-index:100;
-  display:flex; gap:10px; justify-content:center;
+.sticky-cta{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(248,244,239,.95);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  padding:14px 20px;border-top:1px solid var(--border);
+  z-index:100;display:flex;gap:10px;justify-content:center;
 }
-.sticky-btn {
-  flex:1; max-width:240px;
-  padding:13px 20px; border-radius:100px;
-  font-family:'DM Sans',sans-serif;
-  font-size:13px; font-weight:600;
-  cursor:pointer; border:none;
-  transition:transform .15s, box-shadow .15s;
+.sticky-btn{
+  flex:1;max-width:240px;padding:13px 20px;border-radius:100px;
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;
 }
-.sticky-btn:hover { transform:translateY(-1px); }
-.sticky-btn.primary {
+.sticky-btn:hover{transform:translateY(-1px)}
+.sticky-btn.primary{
   background:linear-gradient(135deg,var(--violet),#3730a3);
-  color:#fff;
-  box-shadow:0 4px 20px rgba(76,63,231,.3);
+  color:#fff;box-shadow:0 4px 20px rgba(98,84,200,.3);
 }
-.sticky-btn.secondary {
-  background:transparent;
-  border:1.5px solid var(--border);
-  color:var(--navy);
+.sticky-btn.secondary{
+  background:transparent;border:1.5px solid var(--border);color:var(--navy);
 }
+
+/* ── STAR DECOR ── */
+.hstar{position:absolute;border-radius:50%;background:#fff}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.4)}}
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.card { animation:fadeUp .5s ease both; }
-.card:nth-child(2){animation-delay:.05s}
-.card:nth-child(3){animation-delay:.1s}
-.card:nth-child(4){animation-delay:.15s}
-.card:nth-child(5){animation-delay:.2s}
-.card:nth-child(6){animation-delay:.25s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp .5s ease both}
+.card:nth-child(2){animation-delay:.06s}
+.card:nth-child(3){animation-delay:.12s}
+.card:nth-child(4){animation-delay:.18s}
+.card:nth-child(5){animation-delay:.22s}
+.card:nth-child(6){animation-delay:.26s}
 .card:nth-child(7){animation-delay:.3s}
 
-@keyframes fillbar { from{height:0} to{height:var(--h)} }
-
 /* ── RESPONSIVE ── */
-@media(max-width:420px){
-  .favour-grid{grid-template-columns:1fr 1fr}
+@media(max-width:660px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-portrait{display:none}
+  .s1-layout{grid-template-columns:1fr}
+  .s2-layout{flex-direction:column}
+  .s2-bar-side{flex-direction:row;align-items:center;gap:12px}
+  .bar-track{min-height:160px;width:26px}
+  .bar-fill{height:0%}
+  .s5-layout{grid-template-columns:1fr}
+  .clouds-img{display:none}
+  .s7-layout{grid-template-columns:1fr}
+  .compass-wrap{display:none}
   .reco-grid{grid-template-columns:1fr}
-  .essence-grid{grid-template-columns:1fr}
-  .level-layout{flex-direction:column}
-  .bar-track{min-height:16px; width:100%}
-  .bar-fill{top:0;bottom:auto; width:var(--hw,85%); height:100% !important}
-  .bar-pct{left:var(--hw,85%); transform:translate(-50%,-50%)}
+  .essence-cols{grid-template-columns:1fr}
+  .favour-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:400px){
+  .channels-grid{grid-template-columns:1fr}
+  .favour-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- ── HERO HEADER ── -->
-<header class="hero-header">
-
-  <!-- bg stars -->
-  <div class="hstar" style="width:2px;height:2px;top:12%;left:15%;animation:tw 2.3s .2s ease-in-out infinite;"></div>
-  <div class="hstar" style="width:1.5px;height:1.5px;top:22%;left:82%;animation:tw 3.1s .8s ease-in-out infinite;"></div>
-  <div class="hstar" style="width:2.5px;height:2.5px;top:8%;left:65%;animation:tw 2.7s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9)"></div>
-  <div class="hstar" style="width:1px;height:1px;top:35%;left:20%;animation:tw 2s .5s ease-in-out infinite;"></div>
-  <div class="hstar" style="width:2px;height:2px;top:18%;left:45%;animation:tw 3.5s 1.5s ease-in-out infinite;background:rgba(196,181,253,.7)"></div>
-  <div class="hstar" style="width:1.5px;height:1.5px;top:40%;left:90%;animation:tw 2.2s .3s ease-in-out infinite;"></div>
-  <div class="hstar" style="width:3px;height:3px;top:6%;left:30%;animation:tw 4s 2s ease-in-out infinite;background:rgba(251,191,36,.6);filter:drop-shadow(0 0 4px rgba(251,191,36,.5))"></div>
-
-  <div class="brand">Astro Coach · by Puneet Nahata</div>
-
-  <div class="avatar-ring">
-    <div class="ring-pulse"></div>
-    <div class="ring-pulse2"></div>
-    <!-- Zodiac ring SVG -->
-    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="56" stroke="rgba(167,139,250,.35)" stroke-width="1"/>
-      <circle cx="60" cy="60" r="48" stroke="rgba(167,139,250,.2)" stroke-width="1" stroke-dasharray="4 6"/>
-      <!-- Filled bg -->
-      <circle cx="60" cy="60" r="44" fill="rgba(30,27,75,.8)"/>
-      <!-- Subtle constellation lines -->
-      <line x1="60" y1="16" x2="85" y2="35" stroke="rgba(167,139,250,.2)" stroke-width=".8"/>
-      <line x1="85" y1="35" x2="104" y2="60" stroke="rgba(167,139,250,.2)" stroke-width=".8"/>
-      <line x1="60" y1="16" x2="35" y2="35" stroke="rgba(167,139,250,.2)" stroke-width=".8"/>
-      <!-- Tiny stars on ring -->
-      <circle cx="60" cy="4"  r="1.5" fill="rgba(255,255,255,.7)"/>
-      <circle cx="104" cy="60" r="1.5" fill="rgba(255,255,255,.7)"/>
-      <circle cx="60" cy="116" r="1.5" fill="rgba(255,255,255,.7)"/>
-      <circle cx="16" cy="60" r="1.5" fill="rgba(255,255,255,.7)"/>
-      <circle cx="89" cy="19" r="1" fill="rgba(196,181,253,.8)"/>
-      <circle cx="101" cy="35" r="1" fill="rgba(196,181,253,.8)"/>
-      <!-- Center glow -->
-      <circle cx="60" cy="60" r="20" fill="url(#centerglow)"/>
-      <defs>
-        <radialGradient id="centerglow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="rgba(99,102,241,.4)"/>
-          <stop offset="100%" stop-color="rgba(99,102,241,0)"/>
-        </radialGradient>
-      </defs>
-    </svg>
-    <div class="avatar-initials">A</div>
-  </div>
-
-  <div class="hero-name"></div>
-  <div class="hero-title">Your Intuition Profile · Generated by Natal Chart</div>
-
-  <div class="birth-pills">
-    <div class="birth-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      <span id="pill-dob">—</span>
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Astro Coach · by Puneet Nahata</div>
+      <h1 class="hero-heading serif">Your<br>Intuition<br>Profile</h1>
+      <p class="hero-sub">Discover the wisdom<br>that already lives within you.</p>
+      <div class="hero-name"></div>
+      <div class="birth-pills">
+        <div class="birth-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div><span class="birth-pill-label">Date of Birth</span><span id="pill-dob">—</span></div>
+        </div>
+        <div class="birth-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><span class="birth-pill-label">Time of Birth</span><span id="pill-tob">—</span></div>
+        </div>
+        <div class="birth-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><span class="birth-pill-label">Place of Birth</span><span id="pill-pob">—</span></div>
+        </div>
+      </div>
     </div>
-    <div class="birth-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span id="pill-tob">—</span>
-    </div>
-    <div class="birth-pill">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span id="pill-pob">—</span>
+    <div class="hero-portrait">
+      <!-- Decorative stars -->
+      <div class="hstar" style="width:2px;height:2px;top:8%;left:12%;animation:tw 2.3s .2s ease-in-out infinite"></div>
+      <div class="hstar" style="width:1.5px;height:1.5px;top:15%;left:85%;animation:tw 3.1s .8s ease-in-out infinite"></div>
+      <div class="hstar" style="width:2px;height:2px;top:5%;left:55%;animation:tw 2.7s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9)"></div>
+      <div class="hstar" style="width:3px;height:3px;top:88%;left:20%;animation:tw 3.5s 1.5s ease-in-out infinite;background:rgba(251,191,36,.7)"></div>
+      <div class="hstar" style="width:1.5px;height:1.5px;top:80%;left:78%;animation:tw 2.2s .4s ease-in-out infinite"></div>
+      <div class="portrait-oval">
+        <div class="portrait-glow"></div>
+        <!-- Silhouette SVG -->
+        <svg viewBox="0 0 240 300" width="240" height="300" xmlns="http://www.w3.org/2000/svg" fill="none" style="position:absolute;inset:0">
+          <!-- Cosmic glow behind figure -->
+          <radialGradient id="glow1" cx="50%" cy="65%" r="40%">
+            <stop offset="0%" stop-color="rgba(255,255,200,.5)"/>
+            <stop offset="100%" stop-color="rgba(255,255,200,0)"/>
+          </radialGradient>
+          <ellipse cx="120" cy="195" rx="55" ry="55" fill="url(#glow1)"/>
+          <!-- Stars scattered -->
+          <circle cx="40" cy="50" r="1.5" fill="rgba(255,255,255,.6)"/>
+          <circle cx="195" cy="35" r="1" fill="rgba(255,255,255,.5)"/>
+          <circle cx="210" cy="80" r="1.5" fill="rgba(255,255,255,.4)"/>
+          <circle cx="25" cy="140" r="1" fill="rgba(255,255,255,.5)"/>
+          <circle cx="220" cy="200" r="1.2" fill="rgba(255,255,255,.4)"/>
+          <circle cx="60" cy="260" r="1" fill="rgba(255,255,255,.4)"/>
+          <circle cx="180" cy="250" r="1.5" fill="rgba(255,255,255,.5)"/>
+          <!-- Small sparkles -->
+          <text x="155" y="55" font-size="10" fill="rgba(255,255,255,.7)" text-anchor="middle">✦</text>
+          <text x="85" y="38" font-size="8" fill="rgba(255,255,255,.5)" text-anchor="middle">✦</text>
+          <text x="30" y="200" font-size="7" fill="rgba(255,255,255,.4)" text-anchor="middle">✦</text>
+          <!-- Oval neck/shoulders -->
+          <ellipse cx="120" cy="100" rx="28" ry="34" fill="rgba(200,180,240,.5)" stroke="rgba(255,255,255,.3)" stroke-width=".5"/>
+          <!-- Silhouette head -->
+          <ellipse cx="121" cy="88" rx="22" ry="26" fill="rgba(160,130,210,.6)"/>
+          <!-- Hair up bun suggestion -->
+          <ellipse cx="121" cy="65" rx="14" ry="12" fill="rgba(140,110,190,.6)"/>
+          <ellipse cx="134" cy="60" rx="7" ry="10" fill="rgba(140,110,190,.55)" transform="rotate(-15,134,60)"/>
+          <!-- Shoulders/body -->
+          <path d="M75 155 Q80 125 95 118 Q108 112 121 112 Q134 112 147 118 Q162 125 167 155 Q175 185 172 220 Q168 250 121 250 Q74 250 70 220 Q67 185 75 155Z" fill="rgba(140,110,200,.45)"/>
+          <!-- Energy lines around figure -->
+          <ellipse cx="121" cy="170" rx="65" ry="80" stroke="rgba(255,255,255,.1)" stroke-width="1" stroke-dasharray="3 8" fill="none"/>
+          <ellipse cx="121" cy="170" rx="85" ry="105" stroke="rgba(255,255,255,.06)" stroke-width="1" stroke-dasharray="2 10" fill="none"/>
+          <!-- Central glow / star burst -->
+          <circle cx="121" cy="192" r="16" fill="url(#glow1)"/>
+          <text x="121" y="197" font-size="16" fill="rgba(255,255,200,.9)" text-anchor="middle">✦</text>
+        </svg>
+      </div>
     </div>
   </div>
 </header>
@@ -597,128 +605,130 @@ body {
 
   <!-- 1. BIRTH DETAILS & NATAL CHART -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">1</div>
       <h2>Birth Details &amp; Natal Chart</h2>
     </div>
-
-    <!-- Natal Chart SVG -->
-    <div class="natal-wrap">
-      <svg viewBox="0 0 280 280" width="240" height="240" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <!-- Rings -->
-        <circle cx="140" cy="140" r="125" stroke="#ede9fe" stroke-width="1"/>
-        <circle cx="140" cy="140" r="95" stroke="#e4ddd4" stroke-width=".8"/>
-        <circle cx="140" cy="140" r="65" stroke="#e4ddd4" stroke-width=".8"/>
-        <circle cx="140" cy="140" r="35" stroke="#e4ddd4" stroke-width=".8"/>
-        <!-- Axis lines -->
-        <line x1="140" y1="15" x2="140" y2="265" stroke="#e4ddd4" stroke-width=".7"/>
-        <line x1="15" y1="140" x2="265" y2="140" stroke="#e4ddd4" stroke-width=".7"/>
-        <line x1="51" y1="51" x2="229" y2="229" stroke="#e4ddd4" stroke-width=".7"/>
-        <line x1="229" y1="51" x2="51" y2="229" stroke="#e4ddd4" stroke-width=".7"/>
-
-        <!-- Zodiac symbols on outer ring (12 positions) -->
-        <text x="134" y="14" font-size="9" fill="#a78bfa" font-family="serif" text-anchor="middle">♈</text>
-        <text x="175" y="25" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♉</text>
-        <text x="206" y="52" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♊</text>
-        <text x="220" y="90" font-size="9" fill="#a78bfa" font-family="serif" text-anchor="middle">♋</text>
-        <text x="215" y="136" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♌</text>
-        <text x="196" y="175" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♍</text>
-        <text x="148" y="270" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♎</text>
-        <text x="100" y="264" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♏</text>
-        <text x="66" y="243" font-size="9" fill="#a78bfa" font-family="serif" text-anchor="middle">♐</text>
-        <text x="44" y="175" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♑</text>
-        <text x="38" y="110" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♒</text>
-        <text x="68" y="60" font-size="9" fill="#6b6b82" font-family="serif" text-anchor="middle">♓</text>
-
-        <!-- Natal chart shape (polygon) -->
-        <polygon
-          points="140,45 215,95 230,170 175,230 95,225 55,160 70,80"
-          fill="rgba(99,102,241,.08)" stroke="rgba(99,102,241,.5)" stroke-width="1.5"/>
-        <!-- Planet dots -->
-        <circle cx="140" cy="45"  r="4" fill="#4c3fe7"/>
-        <circle cx="215" cy="95"  r="4" fill="#d97706"/>
-        <circle cx="230" cy="170" r="4" fill="#4c3fe7"/>
-        <circle cx="175" cy="230" r="3.5" fill="#a78bfa"/>
-        <circle cx="95"  cy="225" r="3.5" fill="#a78bfa"/>
-        <circle cx="55"  cy="160" r="4" fill="#d97706"/>
-        <circle cx="70"  cy="80"  r="4" fill="#4c3fe7"/>
-        <!-- Planet labels -->
-        <text x="140" y="40" font-size="8" fill="#4c3fe7" text-anchor="middle" font-family="sans-serif">☽</text>
-        <text x="219" y="90" font-size="8" fill="#d97706" text-anchor="middle" font-family="sans-serif">♀</text>
-        <text x="234" y="166" font-size="8" fill="#4c3fe7" text-anchor="middle" font-family="sans-serif">♃</text>
-        <text x="178" y="244" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="sans-serif">♄</text>
-        <text x="92" y="240" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="sans-serif">♂</text>
-        <text x="50" y="157" font-size="8" fill="#d97706" text-anchor="middle" font-family="sans-serif">☉</text>
-        <text x="66" y="76" font-size="8" fill="#4c3fe7" text-anchor="middle" font-family="sans-serif">☿</text>
-        <!-- Center -->
-        <circle cx="140" cy="140" r="5" fill="url(#chartglow)" stroke="#a78bfa" stroke-width="1"/>
-        <defs>
-          <radialGradient id="chartglow"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#a78bfa"/></radialGradient>
-        </defs>
-      </svg>
+    <div class="s1-layout">
+      <!-- Natal Chart -->
+      <div class="natal-chart-wrap">
+        <svg viewBox="0 0 260 260" width="230" height="230" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <radialGradient id="chartcenter" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#6254c8" stop-opacity=".4"/>
+              <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <!-- Concentric rings -->
+          <circle cx="130" cy="130" r="118" stroke="#e8e0d5" stroke-width="1"/>
+          <circle cx="130" cy="130" r="90" stroke="#ddd6f3" stroke-width=".8"/>
+          <circle cx="130" cy="130" r="62" stroke="#e8e0d5" stroke-width=".8"/>
+          <circle cx="130" cy="130" r="34" stroke="#ddd6f3" stroke-width=".8"/>
+          <!-- Axis cross lines -->
+          <line x1="130" y1="12" x2="130" y2="248" stroke="#e8e0d5" stroke-width=".7"/>
+          <line x1="12" y1="130" x2="248" y2="130" stroke="#e8e0d5" stroke-width=".7"/>
+          <line x1="46" y1="46" x2="214" y2="214" stroke="#e8e0d5" stroke-width=".7"/>
+          <line x1="214" y1="46" x2="46" y2="214" stroke="#e8e0d5" stroke-width=".7"/>
+          <!-- Zodiac symbols -->
+          <text x="124" y="11"  font-size="8" fill="#a78bfa" font-family="serif" text-anchor="middle">♈</text>
+          <text x="162" y="22"  font-size="8" fill="#8b7fe8" font-family="serif" text-anchor="middle">♉</text>
+          <text x="192" y="48"  font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♊</text>
+          <text x="206" y="84"  font-size="8" fill="#a78bfa" font-family="serif" text-anchor="middle">♋</text>
+          <text x="202" y="128" font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♌</text>
+          <text x="186" y="165" font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♍</text>
+          <text x="136" y="253" font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♎</text>
+          <text x="96"  y="249" font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♏</text>
+          <text x="62"  y="228" font-size="8" fill="#a78bfa" font-family="serif" text-anchor="middle">♐</text>
+          <text x="42"  y="166" font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♑</text>
+          <text x="36"  y="102" font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♒</text>
+          <text x="62"  y="56"  font-size="8" fill="#7c7893" font-family="serif" text-anchor="middle">♓</text>
+          <!-- Chart shape -->
+          <polygon points="130,42 202,88 218,162 164,215 88,210 50,150 65,76"
+            fill="rgba(98,84,200,.07)" stroke="rgba(98,84,200,.45)" stroke-width="1.5"/>
+          <!-- Planet dots -->
+          <circle cx="130" cy="42"  r="4" fill="#5b47d8"/>
+          <circle cx="202" cy="88"  r="4" fill="#d97706"/>
+          <circle cx="218" cy="162" r="4" fill="#5b47d8"/>
+          <circle cx="164" cy="215" r="3.5" fill="#a78bfa"/>
+          <circle cx="88"  cy="210" r="3.5" fill="#a78bfa"/>
+          <circle cx="50"  cy="150" r="4" fill="#d97706"/>
+          <circle cx="65"  cy="76"  r="4" fill="#5b47d8"/>
+          <!-- Planet labels -->
+          <text x="130" y="37"  font-size="8" fill="#5b47d8" text-anchor="middle" font-family="sans-serif">☽</text>
+          <text x="207" y="84"  font-size="8" fill="#d97706" text-anchor="middle" font-family="sans-serif">♀</text>
+          <text x="222" y="158" font-size="8" fill="#5b47d8" text-anchor="middle" font-family="sans-serif">♃</text>
+          <text x="167" y="229" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="sans-serif">♄</text>
+          <text x="85"  cy="224" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="sans-serif">♂</text>
+          <text x="45"  y="147" font-size="8" fill="#d97706" text-anchor="middle" font-family="sans-serif">☉</text>
+          <text x="61"  y="72"  font-size="8" fill="#5b47d8" text-anchor="middle" font-family="sans-serif">☿</text>
+          <!-- Center glow -->
+          <circle cx="130" cy="130" r="22" fill="url(#chartcenter)"/>
+          <circle cx="130" cy="130" r="5" fill="#6254c8" stroke="#a78bfa" stroke-width="1"/>
+        </svg>
+      </div>
+      <!-- Birth Details Table -->
+      <div>
+        <div class="birth-table">
+          <div class="birth-table-title">Birth Details</div>
+          <div class="birth-row"><div class="lbl">Date of Birth</div><div class="val" id="bd-dob">—</div></div>
+          <div class="birth-row"><div class="lbl">Time of Birth</div><div class="val" id="bd-tob">—</div></div>
+          <div class="birth-row"><div class="lbl">Place of Birth</div><div class="val" id="bd-pob">—</div></div>
+          <div class="birth-row"><div class="lbl">Sun Sign</div><div class="val">Taurus</div></div>
+          <div class="birth-row"><div class="lbl">Moon Sign</div><div class="val">Pisces</div></div>
+          <div class="birth-row"><div class="lbl">Ascendant</div><div class="val">Cancer</div></div>
+        </div>
+      </div>
     </div>
-
-    <!-- Birth details grid -->
-    <div class="birth-grid" style="margin-top:16px">
-      <div class="birth-row"><div>Date of Birth</div><div id="bd-dob">—</div></div>
-      <div class="birth-row"><div>Time of Birth</div><div id="bd-tob">—</div></div>
-      <div class="birth-row"><div>Place of Birth</div><div id="bd-pob">—</div></div>
-      <div class="birth-row"><div>Sun Sign</div><div>Taurus</div></div>
-      <div class="birth-row"><div>Moon Sign</div><div>Pisces</div></div>
-      <div class="birth-row"><div>Ascendant</div><div>Cancer</div></div>
-    </div>
-
-    <div class="natal-note">
-      ✦ &nbsp;Your intuitive blueprint is written in the stars. This chart reveals the unique cosmic pattern that shapes the way you feel, sense and know.
-    </div>
+    <div class="natal-note">✦ &nbsp;Your intuitive blueprint is written in the stars. This chart reveals the unique cosmic pattern that shapes the way you feel, sense and know.</div>
   </div>
 
   <!-- 2. INTUITION LEVEL -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">2</div>
       <h2>Your Intuition Level</h2>
     </div>
-    <div class="level-layout">
-
-      <!-- Bar + labels -->
-      <div style="display:flex;gap:10px;align-items:stretch">
-        <div class="level-bar-col" style="justify-content:space-between;padding:4px 0">
-          <div class="level-label-row active">
-            <span>Exceptional</span><div class="level-dot"></div>
+    <div class="s2-layout">
+      <div class="s2-bar-side">
+        <div class="level-labels">
+          <div class="level-lbl active">
+            <span>EXCEPTIONAL<span class="level-lbl-sub">Very high intuitive sensitivity</span></span>
+            <div class="level-lbl-dot"></div>
           </div>
-          <div class="level-label-row">
-            <span>Strong</span><div class="level-dot"></div>
+          <div class="level-lbl">
+            <span>STRONG<span class="level-lbl-sub">Highly intuitive</span></span>
+            <div class="level-lbl-dot"></div>
           </div>
-          <div class="level-label-row">
-            <span>Moderate</span><div class="level-dot"></div>
+          <div class="level-lbl">
+            <span>MODERATE<span class="level-lbl-sub">Developing intuition</span></span>
+            <div class="level-lbl-dot"></div>
           </div>
-          <div class="level-label-row">
-            <span>Weak</span><div class="level-dot"></div>
+          <div class="level-lbl">
+            <span>WEAK<span class="level-lbl-sub">Needs nurturing</span></span>
+            <div class="level-lbl-dot"></div>
           </div>
         </div>
-        <div class="bar-track" id="barTrack" style="--h:85%">
-          <div class="bar-fill" id="barFill" style="height:0%">
+        <div class="bar-track" id="barTrack">
+          <div class="bar-fill" id="barFill">
             <div class="bar-pct">85%</div>
           </div>
         </div>
       </div>
-
-      <div class="level-text-col">
-        <div class="level-headline"><span id="level-name"></span> Your intuition is strong and receptive.</div>
-        <p class="level-desc">You naturally pick up on subtle energies and feelings. Your inner knowing is a powerful guide when you learn to trust it fully.</p>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">You naturally receive information through:</div>
+      <div class="s2-text">
+        <div class="s2-headline">Your intuition is<br>strong and receptive.</div>
+        <p class="s2-desc">You naturally pick up on subtle energies and feelings. Your inner knowing is a powerful guide when you learn to trust it fully.</p>
+        <div class="s2-receives-label">You naturally receive information through:</div>
         <div class="receives-list">
           <div class="receives-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
             Emotional cues
           </div>
           <div class="receives-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
             Energy shifts
           </div>
           <div class="receives-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div class="r-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
             Subtle signs &amp; synchronicities
           </div>
         </div>
@@ -728,60 +738,74 @@ body {
 
   <!-- 3. HOW INTUITION SPEAKS -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">3</div>
       <h2>How Your Intuition Speaks to You</h2>
     </div>
     <div class="channels-grid">
       <div class="channel-card">
-        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="channel-icon">👁️</div>
-        <div class="channel-name">Visual Knowing</div>
-        <div class="channel-desc">You receive images, symbols and flashes of insight.</div>
+        <div class="ch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="ch-name">Visual Knowing</div>
+        <div class="ch-desc">You receive images, symbols and flashes of insight.</div>
       </div>
       <div class="channel-card">
-        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="channel-icon">🌫️</div>
-        <div class="channel-name">Inner Thoughts</div>
-        <div class="channel-desc">Quiet inner guidance and strong intuitive impressions.</div>
+        <div class="ch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="ch-name">Inner Thoughts</div>
+        <div class="ch-desc">Quiet inner guidance and strong intuitive impressions.</div>
       </div>
       <div class="channel-card">
-        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="channel-icon">💜</div>
-        <div class="channel-name">Emotional Sensing</div>
-        <div class="channel-desc">You feel the truth in your heart and body before your mind understands it.</div>
+        <div class="ch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="ch-name">Emotional Sensing</div>
+        <div class="ch-desc">You feel the truth in your heart and body before your mind understands it.</div>
       </div>
       <div class="channel-card">
-        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="channel-icon">⚡</div>
-        <div class="channel-name">Sudden Downloads</div>
-        <div class="channel-desc">Answers arrive unexpectedly in moments of stillness or inspiration.</div>
+        <div class="ch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="ch-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="ch-name">Sudden Downloads</div>
+        <div class="ch-desc">Answers arrive unexpectedly in moments of stillness or inspiration.</div>
       </div>
     </div>
-    <div class="speaks-note">You are a multi-channel intuitive. The more you listen, the clearer it gets.</div>
+    <div class="section-note">You are a multi-channel intuitive. The more you listen, the clearer it gets.</div>
   </div>
 
   <!-- 4. WHAT WORKS IN FAVOUR -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">4</div>
       <h2>What Works in Your Favour</h2>
     </div>
     <div class="favour-grid">
       <div class="favour-card">
-        <div class="favour-icon">🌙</div>
-        <div class="favour-name">Strong Moon Placement</div>
-        <div class="favour-desc">Deep emotional awareness and natural empathy guide your inner knowing.</div>
+        <div class="fav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div class="fav-name">Strong Moon Placement</div>
+        <div class="fav-desc">Deep emotional awareness and natural empathy guide your inner knowing.</div>
       </div>
       <div class="favour-card">
-        <div class="favour-icon">💧</div>
-        <div class="favour-name">Water Element Dominance</div>
-        <div class="favour-desc">Heightened sensitivity, intuition and energetic perception.</div>
+        <div class="fav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div class="fav-name">Water Element Dominance</div>
+        <div class="fav-desc">Heightened sensitivity, intuition and energetic perception.</div>
       </div>
       <div class="favour-card">
-        <div class="favour-icon">✦</div>
-        <div class="favour-name">Beneficial Aspects</div>
-        <div class="favour-desc">Support from key planetary aspects enhances your intuitive gifts.</div>
+        <div class="fav-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="fav-name">Beneficial Aspects</div>
+        <div class="fav-desc">Support from key planetary aspects enhances your intuitive gifts.</div>
       </div>
     </div>
     <div class="favour-note">These cosmic blessings act as tailwinds, helping your intuition soar higher.</div>
@@ -789,38 +813,75 @@ body {
 
   <!-- 5. WHAT CLOUDS YOUR INNER VOICE -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">5</div>
       <h2>What Clouds Your Inner Voice</h2>
     </div>
-    <div class="clouds-list">
-      <div class="cloud-item">
-        <div class="cloud-icon-wrap">🌪️</div>
-        <div>
-          <div class="cloud-name">Overthinking</div>
-          <div class="cloud-desc">Too much mental noise drowns subtle guidance.</div>
+    <div class="s5-layout">
+      <div class="clouds-list">
+        <div class="cloud-item">
+          <div class="cloud-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+          </div>
+          <div>
+            <div class="cloud-name">Overthinking</div>
+            <div class="cloud-desc">Too much mental noise drowns subtle guidance.</div>
+          </div>
+        </div>
+        <div class="cloud-item">
+          <div class="cloud-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <div class="cloud-name">Self-Doubt</div>
+            <div class="cloud-desc">Second-guessing weakens your inner trust.</div>
+          </div>
+        </div>
+        <div class="cloud-item">
+          <div class="cloud-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <div class="cloud-name">Emotional Noise</div>
+            <div class="cloud-desc">Unprocessed emotions create energetic static.</div>
+          </div>
+        </div>
+        <div class="cloud-item">
+          <div class="cloud-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="cloud-name">External Influence</div>
+            <div class="cloud-desc">Too many opinions can pull you away from your truth.</div>
+          </div>
         </div>
       </div>
-      <div class="cloud-item">
-        <div class="cloud-icon-wrap">🪞</div>
-        <div>
-          <div class="cloud-name">Self-Doubt</div>
-          <div class="cloud-desc">Second-guessing weakens your inner trust.</div>
-        </div>
-      </div>
-      <div class="cloud-item">
-        <div class="cloud-icon-wrap">🌊</div>
-        <div>
-          <div class="cloud-name">Emotional Noise</div>
-          <div class="cloud-desc">Unprocessed emotions create energetic static.</div>
-        </div>
-      </div>
-      <div class="cloud-item">
-        <div class="cloud-icon-wrap">👥</div>
-        <div>
-          <div class="cloud-name">External Influence</div>
-          <div class="cloud-desc">Too many opinions can pull you away from your truth.</div>
-        </div>
+      <!-- Misty mountain SVG -->
+      <div class="clouds-img">
+        <svg viewBox="0 0 160 200" width="150" height="190" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ddd6f3" stop-opacity=".4"/><stop offset="100%" stop-color="#f8f4ef" stop-opacity="0"/></linearGradient>
+            <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff" stop-opacity=".0"/><stop offset="100%" stop-color="#f8f4ef" stop-opacity=".95"/></linearGradient>
+          </defs>
+          <rect width="160" height="200" fill="url(#sky)"/>
+          <!-- Stars/dots in sky -->
+          <circle cx="30" cy="20" r="1" fill="rgba(162,130,220,.5)"/>
+          <circle cx="120" cy="15" r="1.2" fill="rgba(162,130,220,.4)"/>
+          <circle cx="75" cy="30" r=".8" fill="rgba(162,130,220,.3)"/>
+          <circle cx="145" cy="40" r="1" fill="rgba(162,130,220,.4)"/>
+          <!-- Far mountains -->
+          <path d="M0 140 L30 80 L60 110 L90 65 L120 95 L150 70 L160 90 L160 160 L0 160Z" fill="rgba(180,160,220,.2)"/>
+          <!-- Mid mountains -->
+          <path d="M-10 160 L20 100 L55 130 L80 85 L110 115 L140 88 L170 110 L170 170 L-10 170Z" fill="rgba(160,130,200,.3)"/>
+          <!-- Near hills -->
+          <path d="M-10 175 L40 140 L80 155 L120 135 L170 150 L170 200 L-10 200Z" fill="rgba(140,110,190,.25)"/>
+          <!-- Mist overlay -->
+          <rect width="160" height="200" fill="url(#mist)"/>
+          <!-- Clouds -->
+          <ellipse cx="80" cy="75" rx="35" ry="12" fill="rgba(255,255,255,.35)"/>
+          <ellipse cx="50" cy="80" rx="22" ry="8" fill="rgba(255,255,255,.3)"/>
+          <ellipse cx="115" cy="68" rx="28" ry="9" fill="rgba(255,255,255,.3)"/>
+        </svg>
       </div>
     </div>
     <div class="clouds-footer">Awareness is the first step. Clarity follows.</div>
@@ -828,72 +889,122 @@ body {
 
   <!-- 6. YOUR PATH -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">6</div>
       <h2>Your Path: Where This Ability Fits</h2>
     </div>
     <div class="path-timeline">
       <div class="path-item">
-        <div class="path-dot">💞</div>
+        <div class="path-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
         <div class="path-name">Relationships</div>
-        <div class="path-desc">Helps you sense truth and build deep connections.</div>
+        <div class="path-desc">Helps you sense truth, build deep connections and understand others at a soul level.</div>
       </div>
       <div class="path-item">
-        <div class="path-dot">💼</div>
+        <div class="path-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
         <div class="path-name">Career Decisions</div>
-        <div class="path-desc">Guides you to aligned choices and directions.</div>
+        <div class="path-desc">Guides you to aligned choices and meaningful directions.</div>
       </div>
       <div class="path-item">
-        <div class="path-dot">🌿</div>
+        <div class="path-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
         <div class="path-name">Spiritual Growth</div>
-        <div class="path-desc">Deepens your connection to the universe.</div>
+        <div class="path-desc">Deepens your connection to the universe and your higher self.</div>
       </div>
       <div class="path-item">
-        <div class="path-dot">✏️</div>
+        <div class="path-dot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
         <div class="path-name">Creativity &amp; Expression</div>
-        <div class="path-desc">Feeds your imagination and inspires creation.</div>
+        <div class="path-desc">Feeds your imagination and helps you create from inspiration.</div>
       </div>
     </div>
     <div class="path-ends">
       <span>START →</span>
       <span>DESTINATION →</span>
     </div>
-    <div class="favour-note" style="margin-top:12px">Your intuition is your compass. Use it to navigate your unique journey.</div>
+    <div class="favour-note" style="margin-top:14px">Your intuition is your compass. Use it to navigate your unique journey.</div>
   </div>
 
   <!-- 7. ESSENCE -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">7</div>
       <h2>The Essence: Your Profile in Brief</h2>
     </div>
-    <div class="essence-hero">
-      <div class="essence-eyebrow">Your Intuitive Archetype</div>
-      <div class="essence-compass">🧭</div>
-      <div class="essence-name">THE INTUITIVE NAVIGATOR</div>
-      <div class="essence-sub" id="archetype-sub">You are here to feel, sense and guide.</div>
-      <div class="essence-grid">
-        <div class="essence-col">
-          <div class="essence-col-title">Key Traits</div>
-          <ul>
-            <li>Empathetic</li>
-            <li>Perceptive</li>
-            <li>Deeply Intuitive</li>
-          </ul>
-        </div>
-        <div class="essence-col">
-          <div class="essence-col-title">Natural Strengths</div>
-          <ul>
-            <li>Strong Inner Knowing</li>
-            <li>Emotional Intelligence</li>
-            <li>Spiritual Awareness</li>
-          </ul>
-        </div>
-        <div class="essence-col">
-          <div class="essence-col-title">Growth Area</div>
-          <ul>
-            <li>Trusting Your Voice Consistently</li>
-          </ul>
+    <div class="s7-layout">
+      <!-- Compass / Mandala SVG -->
+      <div class="compass-wrap">
+        <svg viewBox="0 0 180 180" width="165" height="165" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs>
+            <radialGradient id="compassglow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(98,84,200,.15)"/>
+              <stop offset="100%" stop-color="rgba(98,84,200,0)"/>
+            </radialGradient>
+          </defs>
+          <circle cx="90" cy="90" r="86" stroke="#e8e0d5" stroke-width="1"/>
+          <circle cx="90" cy="90" r="70" stroke="#ddd6f3" stroke-width=".8"/>
+          <circle cx="90" cy="90" r="50" stroke="#e8e0d5" stroke-width=".8"/>
+          <circle cx="90" cy="90" r="30" fill="url(#compassglow)" stroke="#ddd6f3" stroke-width=".8"/>
+          <!-- Cross lines -->
+          <line x1="90" y1="4" x2="90" y2="176" stroke="#ddd6f3" stroke-width=".8"/>
+          <line x1="4" y1="90" x2="176" y2="90" stroke="#ddd6f3" stroke-width=".8"/>
+          <line x1="29" y1="29" x2="151" y2="151" stroke="#ddd6f3" stroke-width=".8"/>
+          <line x1="151" y1="29" x2="29" y2="151" stroke="#ddd6f3" stroke-width=".8"/>
+          <!-- Compass petals -->
+          <path d="M90 4 L98 88 L90 76 L82 88Z" fill="rgba(98,84,200,.35)"/>
+          <path d="M90 176 L82 92 L90 104 L98 92Z" fill="rgba(98,84,200,.2)"/>
+          <path d="M4 90 L88 82 L76 90 L88 98Z" fill="rgba(98,84,200,.2)"/>
+          <path d="M176 90 L92 98 L104 90 L92 82Z" fill="rgba(98,84,200,.35)"/>
+          <!-- Diagonal petals smaller -->
+          <path d="M29 29 L86 86 L80 78 L72 86Z" fill="rgba(162,130,220,.2)"/>
+          <path d="M151 29 L94 86 L102 78 L108 86Z" fill="rgba(162,130,220,.2)"/>
+          <path d="M29 151 L86 94 L80 102 L72 94Z" fill="rgba(162,130,220,.2)"/>
+          <path d="M151 151 L94 94 L102 102 L108 94Z" fill="rgba(162,130,220,.2)"/>
+          <!-- Center -->
+          <circle cx="90" cy="90" r="10" fill="#6254c8" opacity=".8"/>
+          <circle cx="90" cy="90" r="5" fill="#a78bfa"/>
+          <!-- Outer ring dots -->
+          <circle cx="90" cy="6"  r="2" fill="#a78bfa"/>
+          <circle cx="90" cy="174" r="2" fill="#a78bfa"/>
+          <circle cx="6"  cy="90" r="2" fill="#a78bfa"/>
+          <circle cx="174" cy="90" r="2" fill="#a78bfa"/>
+          <!-- Decorative text -->
+          <text x="90" y="90" font-size="7" fill="rgba(255,255,255,.9)" text-anchor="middle" dominant-baseline="middle" font-family="serif">✦</text>
+        </svg>
+      </div>
+      <!-- Text side -->
+      <div class="essence-text-side">
+        <div class="essence-eyebrow">The Intuitive Navigator</div>
+        <div class="essence-name">THE INTUITIVE<br>NAVIGATOR</div>
+        <div class="essence-sub" id="archetype-sub">You are here to feel, sense and guide.</div>
+        <div class="essence-cols">
+          <div class="essence-col">
+            <div class="essence-col-title">Key Traits</div>
+            <ul>
+              <li>Empathetic</li>
+              <li>Perceptive</li>
+              <li>Deeply Intuitive</li>
+            </ul>
+          </div>
+          <div class="essence-col">
+            <div class="essence-col-title">Natural Strengths</div>
+            <ul>
+              <li>Strong Inner Knowing</li>
+              <li>Emotional Intelligence</li>
+              <li>Spiritual Awareness</li>
+            </ul>
+          </div>
+          <div class="essence-col">
+            <div class="essence-col-title">Growth Area</div>
+            <ul>
+              <li>Trusting Your Voice Consistently</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -902,7 +1013,7 @@ body {
 
   <!-- 8. RECOMMENDATIONS -->
   <div class="card">
-    <div class="card-title">
+    <div class="card-head">
       <div class="card-num">8</div>
       <h2>Our Recommendations</h2>
     </div>
@@ -939,7 +1050,7 @@ body {
 </div><!-- /page -->
 
 <!-- FOOTER QUOTE -->
-<div class="footer-quote">
+<div class="footer-quote serif">
   "Your intuition is not something you need to create.<br>It is something you learn to hear."
   <span>— Your Astro Coach &nbsp;🌙</span>
 </div>
@@ -959,12 +1070,9 @@ body {
   const pob   = p.get('pob')   || '';
   const astro = p.get('astro') || 'no';
 
-  // helper: first name only for display
   const first = name.split(' ')[0];
-  // initials
   const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
 
-  // format dob nicely
   function fmtDate(d) {
     if (!d) return '—';
     const dt = new Date(d + 'T00:00:00');
@@ -977,25 +1085,18 @@ body {
     return ((hr%12)||12) + ':' + m + ' ' + ampm;
   }
 
-  // Inject into DOM
   document.addEventListener('DOMContentLoaded', () => {
-    // title
     document.title = first + "'s Intuition Profile — Astro Coach";
 
-    // hero name
     document.querySelectorAll('.hero-name').forEach(el => el.textContent = name);
-    // initials
-    document.querySelectorAll('.avatar-initials').forEach(el => el.textContent = initials);
 
-    // birth pills
-    const pillDob  = document.getElementById('pill-dob');
-    const pillTob  = document.getElementById('pill-tob');
-    const pillPob  = document.getElementById('pill-pob');
+    const pillDob = document.getElementById('pill-dob');
+    const pillTob = document.getElementById('pill-tob');
+    const pillPob = document.getElementById('pill-pob');
     if (pillDob) pillDob.textContent = fmtDate(dob);
     if (pillTob) pillTob.textContent = fmtTime(tob);
     if (pillPob) pillPob.textContent = pob || '—';
 
-    // birth details table
     const bdDob = document.getElementById('bd-dob');
     const bdTob = document.getElementById('bd-tob');
     const bdPob = document.getElementById('bd-pob');
@@ -1003,17 +1104,11 @@ body {
     if (bdTob) bdTob.textContent = fmtTime(tob);
     if (bdPob) bdPob.textContent = pob || '—';
 
-    // personalized greeting in level section
-    const lvlName = document.getElementById('level-name');
-    if (lvlName) lvlName.textContent = first + ',';
-
-    // bar animation
     setTimeout(() => {
       const fill = document.getElementById('barFill');
       if (fill) fill.style.height = '85%';
     }, 500);
 
-    // astro-aware tweak in essence
     const archetypeEl = document.getElementById('archetype-sub');
     if (archetypeEl && astro === 'yes') {
       archetypeEl.textContent = 'As a practitioner, you already sense what this means.';
