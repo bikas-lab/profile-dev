@@ -98,58 +98,127 @@ nav{
 .hero-trust{font-size:12px;color:var(--light);display:flex;align-items:center;gap:6px}
 .hero-trust svg{width:13px;height:13px}
 
-/* HERO IMAGE CARD */
-.hero-img-col{position:relative}
-.hero-card-stack{position:relative;width:260px;height:300px}
-@media(max-width:640px){.hero-card-stack{width:220px;height:260px}}
-.hcard{
-  position:absolute;border-radius:20px;
-  box-shadow:0 20px 60px rgba(30,27,75,.2);
-}
-.hcard-main{
-  width:200px;height:260px;
-  background:linear-gradient(145deg,#1a1740,#2e2a68);
-  top:20px;left:30px;
-  display:flex;flex-direction:column;
-  justify-content:flex-end;padding:22px 18px;
-  color:#fff;overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
-}
-.hcard-main::before{
-  content:'';position:absolute;top:-30px;right:-30px;
-  width:120px;height:120px;
-  background:radial-gradient(circle,rgba(99,102,241,.3),transparent 70%);
-}
-.hcard-moon{font-size:28px;position:absolute;top:18px;left:18px;filter:drop-shadow(0 0 8px rgba(251,191,36,.5));z-index:2}
-.hcard-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:4px;position:relative;z-index:2}
-.hcard-sub{font-size:11px;color:rgba(255,255,255,.55);position:relative;z-index:2}
+/* ── HERO PREVIEW COMPONENT ── */
+.hero-img-col{position:relative;display:flex;justify-content:center;align-items:flex-start;padding-top:16px}
 
-/* star dots on dark card */
+.preview-wrap{
+  position:relative;
+  width:300px;
+}
+@media(max-width:640px){.preview-wrap{width:260px}}
+
+/* sample label */
+.preview-sample-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:5px 12px;
+  background:var(--cream2);border:1px solid var(--border);
+  border-radius:100px;margin-bottom:14px;
+}
+.preview-sample-tag::before{content:'✦';color:var(--gold2);font-size:9px}
+
+/* main dark card */
+.pcard-main{
+  width:100%;
+  background:linear-gradient(145deg,#151236,#1e1b4b,#2e2a68);
+  border-radius:24px;
+  padding:22px 22px 24px;
+  color:#fff;
+  position:relative;overflow:hidden;
+  box-shadow:0 24px 64px rgba(30,27,75,.35), 0 4px 16px rgba(30,27,75,.2);
+  border:1px solid rgba(255,255,255,.07);
+  min-height:200px;
+}
+.pcard-main::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;
+  background:radial-gradient(circle,rgba(99,102,241,.25),transparent 70%);
+  pointer-events:none;
+}
+.pcard-main::after{
+  content:'';position:absolute;bottom:-30px;left:-20px;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(167,139,250,.15),transparent 70%);
+  pointer-events:none;
+}
+.pm-top{display:flex;align-items:center;gap:10px;margin-bottom:20px;position:relative;z-index:2}
+.pm-moon{font-size:26px;filter:drop-shadow(0 0 10px rgba(251,191,36,.6))}
+.pm-badge{
+  margin-left:auto;
+  padding:4px 10px;border-radius:100px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  font-size:10px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.04em;
+}
+.pm-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:700;
+  color:#fff;margin-bottom:5px;position:relative;z-index:2;
+}
+.pm-sub{font-size:12px;color:rgba(255,255,255,.5);position:relative;z-index:2;margin-bottom:20px}
+
+/* star dots */
 .sd{position:absolute;border-radius:50%;background:#fff;z-index:1}
 @keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.4)}}
 @keyframes tw2{0%,100%{opacity:.1;transform:scale(.7)}50%{opacity:.75;transform:scale(1.2)}}
 @keyframes shoot{0%{opacity:0;transform:translate(0,0) scaleX(.2)}10%{opacity:1}80%{opacity:.5}100%{opacity:0;transform:translate(55px,28px) scaleX(1)}}
 .sstar{position:absolute;height:1.5px;background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,.9) 60%,rgba(255,255,255,0));border-radius:2px;transform-origin:left center;animation:shoot var(--sd,4s) var(--sl,1s) ease-out infinite;opacity:0;z-index:1}
 
-.hcard-gauge{
-  width:140px;height:130px;
-  background:#fff;
-  border:2px solid rgba(251,191,36,.35);
-  top:0;left:130px;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  gap:4px;padding:14px 12px;
+/* inline channels row */
+.pm-channels{
+  display:flex;gap:7px;flex-wrap:wrap;position:relative;z-index:2;
 }
-@media(max-width:640px){.hcard-gauge{left:110px}}
-.hg-lbl{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold2);align-self:flex-start}
-.hg-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1}
-.hg-desc{font-size:10px;color:var(--muted)}
-.hg-bars{display:flex;align-items:flex-end;gap:2px;margin-top:4px}
-.hgb{width:5px;border-radius:2px;background:#e5deff}
-.hgb.on{background:linear-gradient(to top,#4c3fe7,#a78bfa)}
+.pm-ch{
+  padding:5px 10px;border-radius:100px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  font-size:10px;color:rgba(255,255,255,.7);
+  display:flex;align-items:center;gap:5px;
+}
+.pm-ch-dot{width:5px;height:5px;border-radius:50%;background:#a78bfa}
 
-@keyframes nsw{from{transform:rotate(60deg)}to{transform:rotate(0deg)}}
-.needle-l{animation:nsw 1.4s .6s cubic-bezier(.34,1.2,.64,1) both;transform-origin:55px 66px}
+/* floating gauge card */
+.pcard-gauge{
+  position:absolute;
+  top:-18px;right:-18px;
+  width:148px;
+  background:#fff;
+  border-radius:18px;
+  padding:14px 14px 12px;
+  box-shadow:0 12px 40px rgba(30,27,75,.18),0 2px 8px rgba(30,27,75,.1);
+  border:2px solid rgba(251,191,36,.3);
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  z-index:10;
+}
+.pg-lbl{
+  font-size:9px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold2);
+  align-self:flex-start;margin-bottom:2px;
+}
+.pg-gauge{width:100%;overflow:visible}
+.pg-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--navy);
+  line-height:1;margin-top:2px;
+}
+.pg-desc{font-size:10px;color:var(--muted);margin-bottom:4px}
+.pg-bars{display:flex;align-items:flex-end;gap:2.5px}
+.pgb{width:6px;border-radius:3px;background:#ede9fe}
+.pgb.on{background:linear-gradient(to top,#4c3fe7,#a78bfa)}
+
+/* floating mini tag bottom */
+.pcard-whatsapp{
+  position:absolute;bottom:-16px;left:16px;
+  display:flex;align-items:center;gap:7px;
+  background:#fff;border-radius:100px;
+  padding:8px 14px;
+  box-shadow:0 8px 28px rgba(30,27,75,.15);
+  border:1px solid var(--border);
+  font-size:11px;font-weight:600;color:var(--text);
+  z-index:10;white-space:nowrap;
+}
+.pcard-whatsapp svg{width:15px;height:15px;color:#25d366;flex-shrink:0}
+
+@keyframes nsw{from{transform:rotate(62deg)}to{transform:rotate(-2deg)}}
+.needle-l{animation:nsw 1.6s .5s cubic-bezier(.34,1.15,.64,1) both;transform-origin:50% 80%}
 
 /* ── STATS BAND ── */
 .stats-band{
@@ -576,44 +645,78 @@ footer{
   </div>
 
   <div class="hero-img-col">
-    <div class="hero-card-stack">
-      <!-- Dark profile card -->
-      <div class="hcard hcard-main">
-        <div class="hcard-moon">🌙</div>
-        <div class="sd" style="width:2px;height:2px;top:22%;left:55%;animation:tw 2.2s 0s ease-in-out infinite"></div>
-        <div class="sd" style="width:1.5px;height:1.5px;top:15%;left:70%;animation:tw 3.1s .4s ease-in-out infinite"></div>
-        <div class="sd" style="width:2.5px;height:2.5px;top:30%;left:80%;animation:tw 1.8s .9s ease-in-out infinite"></div>
-        <div class="sd" style="width:3px;height:3px;top:10%;left:85%;animation:tw2 4s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9);filter:drop-shadow(0 0 3px rgba(167,139,250,.9))"></div>
-        <div class="sd" style="width:1.5px;height:1.5px;top:42%;left:68%;animation:tw 2s .6s ease-in-out infinite"></div>
-        <div class="sd" style="width:2px;height:2px;top:8%;left:50%;animation:tw2 3.5s 1.5s ease-in-out infinite"></div>
-        <div class="sstar" style="width:38px;top:28%;left:42%;transform:rotate(18deg);--sd:4.2s;--sl:.5s"></div>
-        <div class="hcard-title">Your Intuition Profile</div>
-        <div class="hcard-sub">Personal report from your natal chart</div>
-      </div>
-      <!-- Gauge card -->
-      <div class="hcard hcard-gauge">
-        <div class="hg-lbl">Intuition Level</div>
-        <svg width="90" height="56" viewBox="0 0 110 68" fill="none">
-          <path d="M12 66 A43 43 0 0 1 98 66" stroke="#f0ebff" stroke-width="14" stroke-linecap="round"/>
-          <path d="M12 66 A43 43 0 0 1 98 66" stroke="#e5deff" stroke-width="8" stroke-linecap="round"/>
-          <path d="M12 66 A43 43 0 0 1 98 66" stroke="url(#gg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="135" stroke-dashoffset="30"/>
-          <line x1="55" y1="66" x2="24" y2="24" stroke="rgba(217,119,6,.15)" stroke-width="5" stroke-linecap="round"/>
-          <line class="needle-l" x1="55" y1="66" x2="24" y2="24" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="55" cy="66" r="6" fill="white" stroke="#e5deff" stroke-width="2"/>
-          <circle cx="55" cy="66" r="3.5" fill="#d97706"/>
-          <defs><linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs>
-        </svg>
-        <div class="hg-val">High</div>
-        <div class="hg-desc">Reading people</div>
-        <div class="hg-bars">
-          <div class="hgb on" style="height:9px"></div>
-          <div class="hgb on" style="height:13px"></div>
-          <div class="hgb on" style="height:17px"></div>
-          <div class="hgb on" style="height:20px"></div>
-          <div class="hgb on" style="height:18px"></div>
-          <div class="hgb" style="height:12px"></div>
-          <div class="hgb" style="height:9px"></div>
+    <div class="preview-wrap">
+      <div class="preview-sample-tag">Sample profile</div>
+
+      <!-- Main dark card -->
+      <div class="pcard-main">
+        <!-- stars -->
+        <div class="sd" style="width:2px;height:2px;top:18%;left:55%;animation:tw 2.2s 0s ease-in-out infinite"></div>
+        <div class="sd" style="width:1.5px;height:1.5px;top:12%;left:72%;animation:tw 3.1s .4s ease-in-out infinite"></div>
+        <div class="sd" style="width:2.5px;height:2.5px;top:28%;left:82%;animation:tw 1.8s .9s ease-in-out infinite"></div>
+        <div class="sd" style="width:3px;height:3px;top:8%;left:88%;animation:tw2 4s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9);filter:drop-shadow(0 0 3px rgba(167,139,250,.9))"></div>
+        <div class="sd" style="width:1.5px;height:1.5px;top:40%;left:65%;animation:tw 2s .6s ease-in-out infinite"></div>
+        <div class="sd" style="width:2px;height:2px;top:6%;left:48%;animation:tw2 3.5s 1.5s ease-in-out infinite"></div>
+        <div class="sd" style="width:1px;height:1px;top:22%;left:78%;animation:tw 2.4s .3s ease-in-out infinite"></div>
+        <div class="sstar" style="width:40px;top:30%;left:40%;transform:rotate(16deg);--sd:4.5s;--sl:.6s"></div>
+        <div class="sstar" style="width:26px;top:14%;left:56%;transform:rotate(12deg);--sd:6s;--sl:3s"></div>
+
+        <div class="pm-top">
+          <span class="pm-moon">🌙</span>
+          <span class="pm-badge">Free Profile</span>
         </div>
+
+        <div class="pm-title">Your Intuition Profile</div>
+        <div class="pm-sub">Personal report from your natal chart</div>
+
+        <div class="pm-channels">
+          <div class="pm-ch"><span class="pm-ch-dot"></span>Visual Knowing</div>
+          <div class="pm-ch"><span class="pm-ch-dot"></span>Emotional Sensing</div>
+          <div class="pm-ch"><span class="pm-ch-dot"></span>Sudden Downloads</div>
+        </div>
+
+        <!-- Floating gauge card -->
+        <div class="pcard-gauge">
+          <div class="pg-lbl">Intuition Level</div>
+          <svg class="pg-gauge" viewBox="0 0 120 72" width="110" height="66" fill="none" overflow="visible">
+            <!-- outer glow -->
+            <path d="M10 70 A50 50 0 0 1 110 70" stroke="#f0ebff" stroke-width="14" stroke-linecap="round"/>
+            <!-- track -->
+            <path d="M10 70 A50 50 0 0 1 110 70" stroke="#e5deff" stroke-width="8" stroke-linecap="round"/>
+            <!-- fill ~78% -->
+            <path d="M10 70 A50 50 0 0 1 110 70" stroke="url(#gfill)" stroke-width="8" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="35"/>
+            <!-- needle shadow -->
+            <line x1="60" y1="70" x2="28" y2="26" stroke="rgba(217,119,6,.15)" stroke-width="5" stroke-linecap="round"/>
+            <!-- needle -->
+            <line class="needle-l" x1="60" y1="70" x2="28" y2="26" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+            <!-- hub -->
+            <circle cx="60" cy="70" r="7" fill="white" stroke="#ede9fe" stroke-width="2"/>
+            <circle cx="60" cy="70" r="4" fill="#d97706"/>
+            <defs>
+              <linearGradient id="gfill" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#818cf8"/>
+                <stop offset="100%" stop-color="#6366f1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="pg-val">High</div>
+          <div class="pg-desc">Reading people</div>
+          <div class="pg-bars">
+            <div class="pgb on" style="height:8px"></div>
+            <div class="pgb on" style="height:12px"></div>
+            <div class="pgb on" style="height:17px"></div>
+            <div class="pgb on" style="height:21px"></div>
+            <div class="pgb on" style="height:18px"></div>
+            <div class="pgb" style="height:12px"></div>
+            <div class="pgb" style="height:8px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp delivery tag -->
+      <div class="pcard-whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Sent to your WhatsApp
       </div>
     </div>
   </div>
