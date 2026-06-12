@@ -3,643 +3,890 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Strong Is Your Intuition? — Astro Coach by Puneet Nahata</title>
-<meta name="description" content="Your birth chart already knows. Get your personal Intuition Profile — free, in 60 seconds.">
+<title>Discover Your Intuition Profile — Free · Astro Coach by Puneet Nahata</title>
+<meta name="description" content="Your birth chart holds the answer. Get your personal Intuition Profile in 60 seconds — free.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-:root {
-  --navy:#1e1b4b; --indigo:#312e81;
-  --violet:#4c3fe7; --v2:#6366f1;
-  --gold:#d97706; --gold-lt:#fbbf24;
-  --cream:#f5f0e8; --cream2:#ede8df;
-  --white:#ffffff; --border:#e2ddd5;
-  --text:#1a1825; --muted:#6b6b82;
-  --r:16px;
+:root{
+  --navy:#1e1b4b; --indigo:#2d2a6e;
+  --violet:#4c3fe7; --v2:#6366f1; --vsoft:#ede9fe;
+  --gold:#b45309; --gold2:#d97706; --goldx:#fef3c7;
+  --cream:#f5f0e8; --cream2:#ede8df; --cream3:#e6dfd4;
+  --white:#fff; --border:#ddd8cf;
+  --text:#1a1825; --muted:#6b6872; --light:#9994a8;
+  --r:14px;
 }
 html{scroll-behavior:smooth}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--cream);
-  color:var(--text);
-  overflow-x:hidden;
-}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;font-size:15px;line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
-/* ─── HERO ─── */
-.hero {
-  background:linear-gradient(160deg,#13113a 0%,#1e1b4b 45%,#2d2866 100%);
-  padding:52px 24px 0;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(245,240,232,.96);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;
 }
-.hero::after {
-  content:'';
-  position:absolute; bottom:0; left:0; right:0;
-  height:80px;
-  background:linear-gradient(to bottom, transparent, var(--cream));
-  pointer-events:none;
-}
-
-/* bg glow */
-.hero-glow {
-  position:absolute; top:-60px; left:50%; transform:translateX(-50%);
-  width:360px; height:360px;
-  background:radial-gradient(circle,rgba(99,102,241,.2) 0%,transparent 70%);
-  pointer-events:none;
-}
-
-/* stars */
-.hs{position:absolute;border-radius:50%;background:#fff}
-@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.4)}}
-
-.hero-eyebrow {
-  display:inline-flex; align-items:center; gap:7px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:100px; padding:7px 16px;
-  font-size:11px; font-weight:600; letter-spacing:.08em;
-  text-transform:uppercase; color:rgba(255,255,255,.65);
-  margin-bottom:28px; position:relative;
-}
-.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-lt)}
-
-.hero h1 {
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(38px,10vw,58px);
-  font-weight:700; line-height:1.1;
-  color:#fff; margin-bottom:18px;
-  position:relative;
+  font-size:18px;font-weight:700;color:var(--navy);
 }
-.hero h1 em{font-style:italic;color:#a5b4fc}
-
-.hero-sub {
-  font-size:16px; color:rgba(255,255,255,.6);
-  line-height:1.65; max-width:340px;
-  margin:0 auto 44px; position:relative;
+.nav-logo .moon{font-size:18px}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{
+  padding:9px 20px;background:var(--navy);color:#fff;
+  border-radius:100px;font-size:13px;font-weight:600;
+  transition:background .2s,transform .15s;cursor:pointer;border:none;
+  font-family:'DM Sans',sans-serif;
 }
-.hero-sub strong{color:rgba(255,255,255,.9); font-weight:600}
+.nav-cta:hover{background:var(--indigo);transform:translateY(-1px)}
+@media(max-width:500px){.nav-links{display:none}}
 
-/* ─── SAMPLE CARDS FLOAT ─── */
-.cards-float {
-  position:relative; z-index:2;
-  display:flex; gap:12px;
-  justify-content:center;
-  padding:0 16px;
-  max-width:420px; margin:0 auto;
+/* ── HERO ── */
+.hero{
+  background:var(--cream);
+  padding:64px 24px 0;
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:center;
 }
+@media(max-width:640px){
+  .hero{grid-template-columns:1fr;padding:48px 20px 0;text-align:center}
+  .hero-img-col{display:flex;justify-content:center;margin-top:8px}
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:20px;
+}
+.hero-eyebrow::before{content:'✦';font-size:10px}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,6vw,52px);
+  font-weight:700;line-height:1.1;
+  color:var(--navy);margin-bottom:20px;
+  letter-spacing:-.5px;
+}
+.hero h1 em{font-style:italic;color:var(--violet)}
+.hero h1 .gold{color:var(--gold2)}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:28px;max-width:400px}
+@media(max-width:640px){.hero-sub{margin:0 auto 28px}}
+.hero-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+@media(max-width:640px){.hero-actions{align-items:center}}
+.btn-primary{
+  padding:16px 32px;
+  background:linear-gradient(135deg,var(--violet),#3730a3);
+  color:#fff;border:none;border-radius:12px;
+  font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;
+  cursor:pointer;transition:transform .15s,box-shadow .15s;
+  box-shadow:0 6px 28px rgba(76,63,231,.35);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(76,63,231,.45)}
+.btn-primary:active{transform:none}
+.hero-trust{font-size:12px;color:var(--light);display:flex;align-items:center;gap:6px}
+.hero-trust svg{width:13px;height:13px}
 
-.card-dark {
-  flex:1; max-width:190px;
+/* HERO IMAGE CARD */
+.hero-img-col{position:relative}
+.hero-card-stack{position:relative;width:260px;height:300px}
+@media(max-width:640px){.hero-card-stack{width:220px;height:260px}}
+.hcard{
+  position:absolute;border-radius:20px;
+  box-shadow:0 20px 60px rgba(30,27,75,.2);
+}
+.hcard-main{
+  width:200px;height:260px;
   background:linear-gradient(145deg,#1a1740,#2e2a68);
-  border-radius:20px; padding:20px 18px;
-  color:#fff; position:relative;
-  overflow:hidden; min-height:180px;
-  display:flex; flex-direction:column;
-  justify-content:flex-end;
-  box-shadow:0 16px 48px rgba(0,0,0,.4);
+  top:20px;left:30px;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;padding:22px 18px;
+  color:#fff;overflow:hidden;
   border:1px solid rgba(255,255,255,.08);
 }
-.card-dark::before{
-  content:'';
-  position:absolute; top:-30px; right:-30px;
-  width:120px; height:120px;
-  background:radial-gradient(circle,rgba(99,102,241,.25) 0%,transparent 70%);
+.hcard-main::before{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(99,102,241,.3),transparent 70%);
 }
-.card-dark::after{
-  content:'';
-  position:absolute; bottom:-20px; left:-20px;
-  width:80px; height:80px;
-  background:radial-gradient(circle,rgba(167,139,250,.15) 0%,transparent 70%);
-}
-.moon-icon{font-size:26px;position:absolute;top:16px;left:16px;filter:drop-shadow(0 0 8px rgba(251,191,36,.5));z-index:2}
+.hcard-moon{font-size:28px;position:absolute;top:18px;left:18px;filter:drop-shadow(0 0 8px rgba(251,191,36,.5));z-index:2}
+.hcard-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:4px;position:relative;z-index:2}
+.hcard-sub{font-size:11px;color:rgba(255,255,255,.55);position:relative;z-index:2}
 
-/* star dots */
+/* star dots on dark card */
 .sd{position:absolute;border-radius:50%;background:#fff;z-index:1}
-@keyframes twink{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.4)}}
-@keyframes twink2{0%,100%{opacity:.1;transform:scale(.7)}50%{opacity:.75;transform:scale(1.2)}}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.9;transform:scale(1.4)}}
+@keyframes tw2{0%,100%{opacity:.1;transform:scale(.7)}50%{opacity:.75;transform:scale(1.2)}}
 @keyframes shoot{0%{opacity:0;transform:translate(0,0) scaleX(.2)}10%{opacity:1}80%{opacity:.5}100%{opacity:0;transform:translate(55px,28px) scaleX(1)}}
-.shoot-star{position:absolute;height:1.5px;background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,.9) 60%,rgba(255,255,255,0));border-radius:2px;transform-origin:left center;animation:shoot var(--sd,4s) var(--sdl,1s) ease-out infinite;opacity:0;z-index:1}
+.sstar{position:absolute;height:1.5px;background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,.9) 60%,rgba(255,255,255,0));border-radius:2px;transform-origin:left center;animation:shoot var(--sd,4s) var(--sl,1s) ease-out infinite;opacity:0;z-index:1}
 
-.card-dark h3{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;line-height:1.3;margin-bottom:4px;position:relative;z-index:2}
-.card-dark p{font-size:11px;color:rgba(255,255,255,.55);line-height:1.4;position:relative;z-index:2}
-
-/* gauge card */
-.card-gauge {
-  flex:1; max-width:190px;
+.hcard-gauge{
+  width:140px;height:130px;
   background:#fff;
-  border:2px solid rgba(251,191,36,.4);
-  border-radius:20px; padding:18px 14px 14px;
-  display:flex; flex-direction:column;
-  align-items:center; min-height:180px;
-  box-shadow:0 16px 48px rgba(0,0,0,.15);
-  position:relative; overflow:hidden;
+  border:2px solid rgba(251,191,36,.35);
+  top:0;left:130px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:4px;padding:14px 12px;
 }
-.card-gauge::before{
-  content:'';
-  position:absolute; bottom:-24px; left:50%; transform:translateX(-50%);
-  width:120px; height:120px;
-  background:radial-gradient(circle,rgba(251,191,36,.08) 0%,transparent 70%);
-}
-.gauge-lbl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;align-self:flex-start}
-.gauge-svg-wrap{width:108px;height:66px;margin:0 auto}
-.gauge-svg-wrap svg{width:100%;height:auto;overflow:visible}
-.gauge-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);margin-top:6px;text-align:center;line-height:1}
-.gauge-desc{font-size:11px;color:var(--muted);margin-top:2px;text-align:center}
-.gauge-bars{display:flex;align-items:flex-end;gap:3px;justify-content:center;margin-top:10px}
-.gb{width:6px;border-radius:3px;background:#e5deff}
-.gb.on{background:linear-gradient(to top,#4c3fe7,#a78bfa)}
-@keyframes needleSweep{from{transform:rotate(60deg)}to{transform:rotate(0deg)}}
-.needle-line{animation:needleSweep 1.4s .6s cubic-bezier(.34,1.2,.64,1) both;transform-origin:55px 66px}
+@media(max-width:640px){.hcard-gauge{left:110px}}
+.hg-lbl{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold2);align-self:flex-start}
+.hg-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);line-height:1}
+.hg-desc{font-size:10px;color:var(--muted)}
+.hg-bars{display:flex;align-items:flex-end;gap:2px;margin-top:4px}
+.hgb{width:5px;border-radius:2px;background:#e5deff}
+.hgb.on{background:linear-gradient(to top,#4c3fe7,#a78bfa)}
 
-/* ─── SAMPLE LABEL ─── */
-.sample-label {
-  max-width:420px; margin:28px auto 0;
-  padding:0 16px;
-  display:flex; justify-content:center;
-}
-.sample-tag {
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:11px; font-weight:600; letter-spacing:.07em;
-  text-transform:uppercase; color:var(--muted);
-  padding:5px 12px; background:var(--cream2);
-  border-radius:100px;
-}
+@keyframes nsw{from{transform:rotate(60deg)}to{transform:rotate(0deg)}}
+.needle-l{animation:nsw 1.4s .6s cubic-bezier(.34,1.2,.64,1) both;transform-origin:55px 66px}
 
-/* ─── FORM SECTION ─── */
-.form-wrap {
-  max-width:480px; margin:0 auto;
-  padding:24px 20px 0;
-}
-
-.form-card {
+/* ── STATS BAND ── */
+.stats-band{
+  max-width:900px;margin:48px auto 0;
+  padding:0 24px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:var(--r);
   background:var(--white);
-  border-radius:24px; padding:28px 22px;
-  box-shadow:0 4px 32px rgba(30,27,75,.1);
+  overflow:hidden;
+}
+.stat-item{
+  padding:24px 20px;text-align:center;
+  border-right:1px solid var(--border);
+}
+.stat-item:last-child{border-right:none}
+.stat-item .n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:700;color:var(--navy);
+  display:block;line-height:1;margin-bottom:4px;
+}
+.stat-item .l{font-size:12px;color:var(--muted);font-weight:500}
+@media(max-width:500px){
+  .stats-band{grid-template-columns:1fr;border-radius:var(--r)}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border)}
+  .stat-item:last-child{border-bottom:none}
+}
+
+/* ── SECTION WRAPPER ── */
+.section{max-width:900px;margin:0 auto;padding:72px 24px}
+.section-sm{max-width:900px;margin:0 auto;padding:48px 24px}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px;
+}
+.sec-tag::before{content:'✦';font-size:9px}
+.sec-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,5vw,40px);
+  font-weight:700;color:var(--navy);
+  line-height:1.15;margin-bottom:16px;
+}
+.sec-h em{font-style:italic;color:var(--violet)}
+.sec-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:580px}
+
+/* ── DISCOVER GRID ── */
+.discover-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-top:36px;
+}
+@media(max-width:560px){.discover-grid{grid-template-columns:1fr}}
+.ditem{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:18px 16px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;
+}
+.ditem .icon{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--vsoft);display:flex;align-items:center;
+  justify-content:center;font-size:18px;flex-shrink:0;
+}
+.ditem h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.ditem p{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── PAIN SECTION ── */
+.pain-section{background:var(--cream2)}
+.pain-inner{max-width:900px;margin:0 auto;padding:72px 24px}
+.pain-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,4.5vw,38px);
+  font-weight:700;color:var(--navy);
+  line-height:1.2;margin-bottom:24px;
+}
+.pain-list{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.pain-item{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14px;color:var(--muted);line-height:1.6;
+}
+.pain-item::before{
+  content:'→';color:var(--muted);font-weight:600;
+  margin-top:1px;flex-shrink:0;
+}
+.pain-cta{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-style:italic;color:var(--navy);
+  border-left:3px solid var(--violet);padding-left:16px;
+  line-height:1.5;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-wrap{margin-top:40px}
+.compare-label{
+  text-align:center;font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.compare-table{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media(max-width:560px){.compare-table{grid-template-columns:1fr}}
+.ct-col{border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.ct-head{
+  padding:16px 20px;font-size:13px;font-weight:700;
+  text-align:center;letter-spacing:.03em;
+}
+.ct-head.generic{background:var(--cream2);color:var(--muted)}
+.ct-head.profile{background:var(--navy);color:#fff}
+.ct-rows{display:flex;flex-direction:column}
+.ct-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:13px 16px;font-size:13px;
+  border-bottom:1px solid var(--border);
+  line-height:1.5;
+}
+.ct-row:last-child{border-bottom:none}
+.ct-row.generic{background:var(--white);color:var(--muted)}
+.ct-row.profile{background:#f4f2ff;color:var(--navy);font-weight:500}
+.ct-row .ic{flex-shrink:0;margin-top:1px}
+
+/* ── DARK BANNER ── */
+.dark-banner{
+  background:linear-gradient(135deg,#13113a 0%,#1e1b4b 50%,#2d2866 100%);
+  padding:72px 24px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.dark-banner::before{
+  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:500px;height:300px;
+  background:radial-gradient(ellipse,rgba(99,102,241,.2),transparent 70%);
+  pointer-events:none;
+}
+.db-inner{max-width:700px;margin:0 auto;position:relative}
+.db-tag{
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.4);
+  margin-bottom:14px;
+}
+.db-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,5vw,42px);
+  font-weight:700;color:#fff;line-height:1.15;
+  margin-bottom:14px;
+}
+.db-h em{font-style:italic;color:#a5b4fc}
+.db-sub{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:40px}
+.db-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.08);
+  border-radius:16px;overflow:hidden;max-width:540px;margin:0 auto;
+}
+.dbs{padding:22px 16px;background:rgba(255,255,255,.04);text-align:center}
+.dbs .n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:#fff;display:block;line-height:1;margin-bottom:4px}
+.dbs .l{font-size:11px;color:rgba(255,255,255,.45);font-weight:500}
+
+/* bg stars in dark banner */
+.bs{position:absolute;border-radius:50%;background:#fff}
+@keyframes btw{0%,100%{opacity:.12;transform:scale(.8)}50%{opacity:.7;transform:scale(1.3)}}
+
+/* ── INSIDE PROFILE ── */
+.inside-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:10px;margin-top:36px;
+}
+@media(max-width:560px){.inside-grid{grid-template-columns:1fr}}
+.ig-item{
+  padding:20px 18px;background:var(--white);
+  border:1px solid var(--border);border-radius:14px;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.ig-num{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ig-item h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.ig-item p{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── BIO SECTION ── */
+.bio-section{background:var(--cream2)}
+.bio-inner{
+  max-width:900px;margin:0 auto;padding:72px 24px;
+  display:grid;grid-template-columns:280px 1fr;
+  gap:48px;align-items:start;
+}
+@media(max-width:640px){
+  .bio-inner{grid-template-columns:1fr;gap:28px}
+  .bio-img-col{display:flex;flex-direction:column;align-items:center;text-align:center}
+}
+.bio-img{
+  width:240px;height:280px;object-fit:cover;object-position:center top;
+  border-radius:20px;box-shadow:0 20px 60px rgba(30,27,75,.2);
+}
+@media(max-width:640px){.bio-img{width:180px;height:220px}}
+.bio-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--navy);margin-top:12px}
+.bio-title{font-size:12px;color:var(--muted);margin-top:4px}
+.bio-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,34px);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:20px}
+.bio-text h2 em{font-style:italic;color:var(--violet)}
+.bio-para{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.bio-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.bio-tag{
+  padding:6px 14px;border-radius:100px;
+  border:1px solid var(--border);
+  font-size:12px;font-weight:500;color:var(--muted);
+  background:var(--white);
+}
+
+/* ── NO HIDING ── */
+.nohide-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin-top:32px;
+}
+@media(max-width:560px){.nohide-grid{grid-template-columns:1fr}}
+.nh-card{
+  padding:24px 20px;border-radius:16px;
   border:1px solid var(--border);
 }
+.nh-card.dark{background:var(--navy);color:#fff;border-color:transparent}
+.nh-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.nh-card.dark .nh-label{color:rgba(255,255,255,.4)}
+.nh-card:not(.dark) .nh-label{color:var(--muted)}
+.nh-h{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.nh-card.dark .nh-h{color:#fff}
+.nh-card:not(.dark) .nh-h{color:var(--navy)}
+.nh-p{font-size:13px;line-height:1.6}
+.nh-card.dark .nh-p{color:rgba(255,255,255,.55)}
+.nh-card:not(.dark) .nh-p{color:var(--muted)}
 
-.form-title {
+/* ── TESTIMONIALS ── */
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;margin-top:32px;
+}
+@media(max-width:640px){.testi-grid{grid-template-columns:1fr}}
+.tc{
+  padding:20px;background:var(--white);
+  border:1px solid var(--border);border-radius:14px;
+}
+.tc-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.tc-av{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.tc-name{font-size:13px;font-weight:600;color:var(--navy)}
+.tc-meta{font-size:11px;color:var(--muted)}
+.tc-stars{color:var(--gold2);font-size:11px;margin-left:auto}
+.tc-body{font-size:13px;color:var(--muted);line-height:1.65}
+.tc-body strong{color:var(--text)}
+
+/* ── FORM SECTION ── */
+.form-section{
+  background:var(--navy);
+  padding:72px 24px;
+  position:relative;overflow:hidden;
+}
+.form-section::before{
+  content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:500px;height:300px;
+  background:radial-gradient(ellipse,rgba(99,102,241,.2),transparent 70%);
+  pointer-events:none;
+}
+.fs-inner{max-width:540px;margin:0 auto;position:relative}
+.fs-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;text-align:center}
+.fs-h{
   font-family:'Cormorant Garamond',serif;
-  font-size:22px; font-weight:700; color:var(--navy);
-  margin-bottom:4px; text-align:center;
+  font-size:clamp(28px,5vw,40px);font-weight:700;
+  color:#fff;text-align:center;line-height:1.15;margin-bottom:10px;
 }
-.form-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
+.fs-h em{font-style:italic;color:#a5b4fc}
+.fs-sub{font-size:14px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:32px}
 
+.form-card{
+  background:var(--white);border-radius:24px;
+  padding:28px 24px;
+}
 .field{margin-bottom:10px}
-.field input, .field select {
-  width:100%; padding:14px 16px;
-  border:1.5px solid var(--border);
-  border-radius:12px; font-size:14px;
-  font-family:'DM Sans',sans-serif;
-  color:var(--text); background:var(--cream);
-  outline:none;
-  transition:border-color .2s,background .2s,box-shadow .2s;
-  -webkit-appearance:none; appearance:none;
-}
-.field input::placeholder{color:#b0aabf}
-.field input:focus,.field select:focus{
-  border-color:var(--violet);
-  background:var(--white);
-  box-shadow:0 0 0 3px rgba(76,63,231,.08);
-}
-.field input.err{border-color:#ef4444!important}
-
-.row2{display:flex;gap:10px;align-items:flex-start}
-.row2 .field{flex:1}
-
-.time-col{flex:1;display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
-.time-col input[type="time"]{
+.field input,.field select{
   width:100%;padding:14px 16px;
   border:1.5px solid var(--border);border-radius:12px;
   font-size:14px;font-family:'DM Sans',sans-serif;
   color:var(--text);background:var(--cream);
   outline:none;transition:border-color .2s,background .2s,box-shadow .2s;
-  -webkit-appearance:none;
+  -webkit-appearance:none;appearance:none;
 }
-.time-col input[type="time"]:focus{
-  border-color:var(--violet);background:var(--white);
-  box-shadow:0 0 0 3px rgba(76,63,231,.08);
+.field input::placeholder{color:#b8b3c4}
+.field input:focus{border-color:var(--violet);background:#fff;box-shadow:0 0 0 3px rgba(76,63,231,.08)}
+.field input.err{border-color:#ef4444!important}
+.row2{display:flex;gap:10px;align-items:flex-start}
+.row2 .field{flex:1}
+.tcol{flex:1;display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.tcol input[type="time"]{
+  width:100%;padding:14px 16px;
+  border:1.5px solid var(--border);border-radius:12px;
+  font-size:14px;font-family:'DM Sans',sans-serif;
+  color:var(--text);background:var(--cream);outline:none;
+  transition:border-color .2s,background .2s;-webkit-appearance:none;
 }
-.time-col input[type="time"]:disabled{opacity:.4;cursor:not-allowed}
-.idk-lbl{
-  display:flex;align-items:center;gap:7px;
-  font-size:12px;color:var(--muted);cursor:pointer;
-  user-select:none;padding-left:2px;
-}
-.idk-lbl input[type="checkbox"]{
-  width:15px;height:15px;accent-color:var(--violet);cursor:pointer;flex-shrink:0;
-}
+.tcol input[type="time"]:focus{border-color:var(--violet);background:#fff;box-shadow:0 0 0 3px rgba(76,63,231,.08)}
+.tcol input:disabled{opacity:.4;cursor:not-allowed}
+.idk{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none;padding-left:2px}
+.idk input[type="checkbox"]{width:15px;height:15px;accent-color:var(--violet);cursor:pointer;flex-shrink:0}
 
 .astro-q{font-size:13px;font-weight:600;color:var(--text);margin:14px 0 8px}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .pills input[type="radio"]{display:none}
 .pills label{
-  padding:9px 18px;
-  border:1.5px solid var(--border);border-radius:100px;
+  padding:9px 18px;border:1.5px solid var(--border);border-radius:100px;
   font-size:13px;font-weight:500;color:var(--muted);
-  cursor:pointer;transition:all .2s;background:var(--cream);
-  user-select:none;
+  cursor:pointer;transition:all .2s;background:var(--cream);user-select:none;
 }
-.pills input:checked + label{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pills input:checked+label{background:var(--navy);color:#fff;border-color:var(--navy)}
 .pills label:hover{border-color:var(--violet);color:var(--violet)}
 
-.btn-cta {
+.btn-submit{
   display:block;width:100%;padding:18px;
-  background:linear-gradient(135deg,var(--violet) 0%,#3730a3 100%);
+  background:linear-gradient(135deg,var(--violet),#3730a3);
   color:#fff;border:none;border-radius:14px;
-  font-size:17px;font-weight:600;
-  font-family:'DM Sans',sans-serif;
+  font-size:17px;font-weight:600;font-family:'DM Sans',sans-serif;
   cursor:pointer;letter-spacing:.01em;
   transition:transform .15s,box-shadow .15s;
-  box-shadow:0 6px 28px rgba(76,63,231,.38);
+  box-shadow:0 6px 28px rgba(76,63,231,.4);
   position:relative;overflow:hidden;
 }
-.btn-cta::after{
+.btn-submit::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(to right,transparent,rgba(255,255,255,.08) 50%,transparent);
   transform:translateX(-100%);transition:transform .5s;
 }
-.btn-cta:hover::after{transform:translateX(100%)}
-.btn-cta:hover{transform:translateY(-1px);box-shadow:0 10px 36px rgba(76,63,231,.48)}
-.btn-cta:active{transform:translateY(0)}
-
-.form-meta {
-  display:flex;align-items:center;justify-content:center;
-  gap:8px;margin-top:12px;font-size:12px;color:var(--muted);
-}
+.btn-submit:hover::after{transform:translateX(100%)}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 10px 36px rgba(76,63,231,.5)}
+.form-meta{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:12px;color:var(--muted)}
 .form-meta .sep{color:var(--border)}
 
-/* loading overlay */
-.loading-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(30,27,75,.85);
-  backdrop-filter:blur(8px);
-  z-index:999;flex-direction:column;
-  align-items:center;justify-content:center;gap:16px;
-  color:#fff;text-align:center;
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);
+  padding:32px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
 }
-.loading-overlay.show{display:flex}
-.spinner{
-  width:48px;height:48px;
-  border:3px solid rgba(255,255,255,.2);
-  border-top-color:#a78bfa;
-  border-radius:50%;
-  animation:spin .8s linear infinite;
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.35)}
+.footer-quote{
+  background:var(--cream2);padding:32px 24px;
+  text-align:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:18px;color:var(--muted);line-height:1.75;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600}
-.loading-sub{font-size:13px;color:rgba(255,255,255,.6)}
 
-/* ─── HONEST LINE ─── */
-.honest {
-  max-width:480px;margin:0 auto;
-  padding:20px 28px;text-align:center;
-  font-size:14px;color:var(--muted);line-height:1.7;
-  border-top:1px solid var(--border);
-}
-.honest strong{color:var(--text)}
+/* ── DIVIDER ── */
+.divider{border:none;border-top:1px solid var(--border);margin:0}
 
-/* ─── AUTHORITY ─── */
-.authority{max-width:480px;margin:0 auto;padding:24px 20px}
-
-.puneet-row{display:flex;align-items:flex-start;gap:16px;margin-bottom:22px}
-.puneet-img{
-  width:72px;height:72px;border-radius:50%;
-  object-fit:cover;object-position:center top;
-  border:3px solid var(--navy);flex-shrink:0;
-}
-.puneet-info h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--navy);margin-bottom:4px}
-.puneet-info p{font-size:13px;color:var(--muted);line-height:1.5}
-
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
-.stat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 8px;text-align:center}
-.stat .n{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--navy);display:block;margin-bottom:2px}
-.stat .l{font-size:11px;color:var(--muted)}
-
-.app-proof{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:16px}
-.app-proof p{font-size:13.5px;color:var(--text);line-height:1.6;margin-bottom:12px}
-.app-proof strong{color:var(--navy)}
-.app-btns{display:flex;gap:10px}
-.app-btn{
-  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
-  padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;
-  font-size:13px;font-weight:500;color:var(--text);
-  text-decoration:none;cursor:pointer;background:var(--cream);
-  transition:border-color .2s,background .2s;
-}
-.app-btn:hover{border-color:var(--navy);background:var(--white)}
-.app-btn svg{width:17px;height:17px;flex-shrink:0}
-
-/* ─── HOW IT WORKS ─── */
-.how{max-width:480px;margin:0 auto;padding:0 20px 28px}
-.sec-head{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--navy);text-align:center;margin-bottom:18px}
-.steps{display:flex;flex-direction:column}
-.step{display:flex;gap:14px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border)}
-.step:last-child{border-bottom:none}
-.step-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.step p{font-size:12px;color:var(--muted);line-height:1.5}
-
-/* ─── TESTIMONIALS ─── */
-.testi{max-width:480px;margin:0 auto;padding:0 20px 28px}
-.testi-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:10px}
-.testi-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.tav{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
-.tname{font-weight:600;font-size:13px;color:var(--navy)}
-.tmeta{font-size:11px;color:var(--muted)}
-.tstars{margin-left:auto;color:var(--gold-lt);font-size:12px}
-.tbody{font-size:13px;color:var(--muted);line-height:1.65}
-.tbody strong{color:var(--text)}
-
-/* ─── FOOTER ─── */
-.footer{max-width:480px;margin:0 auto;padding:20px 20px 120px;text-align:center}
-.privacy{font-size:12px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:6px}
-.privacy svg{width:13px;height:13px}
-.fquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--muted);line-height:1.75;border-top:1px solid var(--border);padding-top:24px}
-
-/* ─── STICKY ─── */
-.sticky{
+/* ── STICKY ── */
+.sticky-cta{
   position:fixed;bottom:0;left:0;right:0;
   background:rgba(245,240,232,.96);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  padding:14px 20px;border-top:1px solid var(--border);
-  z-index:100;display:flex;justify-content:center;
+  border-top:1px solid var(--border);
+  padding:12px 20px;z-index:199;
+  display:flex;justify-content:center;
   transform:translateY(100%);transition:transform .3s cubic-bezier(.34,1.56,.64,1);
 }
-.sticky.show{transform:translateY(0)}
-.sticky a{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:14px 36px;background:transparent;
-  border:2px solid var(--violet);color:var(--violet);
-  border-radius:100px;font-size:14px;font-weight:600;
-  text-decoration:none;transition:background .2s,color .2s;
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta a{
+  padding:13px 36px;background:linear-gradient(135deg,var(--violet),#3730a3);
+  color:#fff;border-radius:100px;font-size:14px;font-weight:600;
+  box-shadow:0 4px 20px rgba(76,63,231,.35);transition:box-shadow .2s;
 }
-.sticky a:hover{background:var(--violet);color:#fff}
+.sticky-cta a:hover{box-shadow:0 8px 32px rgba(76,63,231,.5)}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.hero,.cards-float,.form-wrap{animation:fadeUp .6s ease both}
-.cards-float{animation-delay:.1s}
-.form-wrap{animation-delay:.2s}
-
-@media(max-width:360px){
-  .cards-float{gap:8px}
-  .card-dark,.card-gauge{padding:16px 12px;min-height:160px}
+/* loading */
+.loader{
+  display:none;position:fixed;inset:0;
+  background:rgba(30,27,75,.88);
+  backdrop-filter:blur(8px);z-index:999;
+  flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  color:#fff;text-align:center;
 }
+.loader.show{display:flex}
+.spin{width:48px;height:48px;border:3px solid rgba(255,255,255,.2);border-top-color:#a78bfa;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-h{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600}
+.loader-s{font-size:13px;color:rgba(255,255,255,.55)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .6s ease both}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="moon">🌙</span> Astro Coach
+  </div>
+  <div class="nav-links">
+    <a href="#discover">What You Get</a>
+    <a href="#inside">Inside Profile</a>
+    <a href="#form">Get Yours Free</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Get Free Profile</button>
+</nav>
+
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-
-  <!-- bg stars -->
-  <div class="hs" style="width:2px;height:2px;top:10%;left:12%;animation:tw 2.3s .2s ease-in-out infinite"></div>
-  <div class="hs" style="width:1.5px;height:1.5px;top:20%;left:78%;animation:tw 3.1s .8s ease-in-out infinite"></div>
-  <div class="hs" style="width:2.5px;height:2.5px;top:7%;left:62%;animation:tw 2.7s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9)"></div>
-  <div class="hs" style="width:1px;height:1px;top:32%;left:18%;animation:tw 2s .5s ease-in-out infinite"></div>
-  <div class="hs" style="width:2px;height:2px;top:16%;left:42%;animation:tw 3.5s 1.5s ease-in-out infinite;background:rgba(196,181,253,.7)"></div>
-  <div class="hs" style="width:3px;height:3px;top:5%;left:28%;animation:tw 4s 2s ease-in-out infinite;background:rgba(251,191,36,.6);filter:drop-shadow(0 0 4px rgba(251,191,36,.5))"></div>
-  <div class="hs" style="width:1.5px;height:1.5px;top:25%;left:88%;animation:tw 2.2s .3s ease-in-out infinite"></div>
-
-  <div class="hero-eyebrow">
-    <span class="dot"></span>
-    Free · Personalized · Based on your birth chart
-  </div>
-
-  <h1>How strong is your<br><em>intuition?</em></h1>
-  <p class="hero-sub">
-    Your birth chart already knows. Get your personal <strong>Intuition Profile</strong> — free, in 60 seconds.
-  </p>
-
-  <!-- SAMPLE CARDS -->
-  <div class="sample-label">
-    <div class="sample-tag">✦ Sample profile</div>
-  </div>
-  <div class="cards-float">
-
-    <!-- Dark card -->
-    <div class="card-dark">
-      <div class="moon-icon">🌙</div>
-      <!-- twinkling stars -->
-      <div class="sd" style="width:2px;height:2px;top:22%;left:55%;animation:twink 2.2s 0s ease-in-out infinite"></div>
-      <div class="sd" style="width:1.5px;height:1.5px;top:15%;left:70%;animation:twink 3.1s .4s ease-in-out infinite"></div>
-      <div class="sd" style="width:2.5px;height:2.5px;top:30%;left:80%;animation:twink 1.8s .9s ease-in-out infinite"></div>
-      <div class="sd" style="width:1px;height:1px;top:18%;left:63%;animation:twink 2.7s .2s ease-in-out infinite"></div>
-      <div class="sd" style="width:3px;height:3px;top:10%;left:85%;animation:twink2 4s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9);filter:drop-shadow(0 0 3px rgba(167,139,250,.9))"></div>
-      <div class="sd" style="width:1.5px;height:1.5px;top:42%;left:68%;animation:twink 2s .6s ease-in-out infinite"></div>
-      <div class="sd" style="width:2px;height:2px;top:8%;left:50%;animation:twink2 3.5s 1.5s ease-in-out infinite"></div>
-      <div class="sd" style="width:1px;height:1px;top:35%;left:90%;animation:twink 2.3s .3s ease-in-out infinite"></div>
-      <div class="sd" style="width:2px;height:2px;top:50%;left:74%;animation:twink 1.9s .7s ease-in-out infinite"></div>
-      <div class="sd" style="width:2px;height:2px;top:20%;left:88%;animation:twink2 3.2s .5s ease-in-out infinite;background:rgba(196,181,253,.9);filter:drop-shadow(0 0 4px rgba(167,139,250,.8))"></div>
-      <!-- shooting stars -->
-      <div class="shoot-star" style="width:38px;top:28%;left:46%;transform:rotate(18deg);--sd:4.2s;--sdl:.5s"></div>
-      <div class="shoot-star" style="width:26px;top:16%;left:58%;transform:rotate(14deg);--sd:5.5s;--sdl:2.8s"></div>
-      <h3>Your intuition profile</h3>
-      <p>Personal report from your natal chart</p>
+<section class="hero fade-up">
+  <div class="hero-text-col">
+    <div class="hero-eyebrow">Free · Instant · Based on your birth chart</div>
+    <h1>Your birth chart<br>knows your<br><em>intuition.</em><br><span class="gold">Do you?</span></h1>
+    <p class="hero-sub">Get your personal Intuition Profile — what makes you intuitive, what blocks it, and how strong it really is. Free, in 60 seconds.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+        Discover Mine Now &nbsp;→
+      </button>
+      <div class="hero-trust">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Free forever · No credit card · WhatsApp delivery
+      </div>
     </div>
+  </div>
 
-    <!-- Gauge card -->
-    <div class="card-gauge">
-      <div class="gauge-lbl">Your intuition level</div>
-      <div class="gauge-svg-wrap">
-        <svg viewBox="0 0 110 68" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <div class="hero-img-col">
+    <div class="hero-card-stack">
+      <!-- Dark profile card -->
+      <div class="hcard hcard-main">
+        <div class="hcard-moon">🌙</div>
+        <div class="sd" style="width:2px;height:2px;top:22%;left:55%;animation:tw 2.2s 0s ease-in-out infinite"></div>
+        <div class="sd" style="width:1.5px;height:1.5px;top:15%;left:70%;animation:tw 3.1s .4s ease-in-out infinite"></div>
+        <div class="sd" style="width:2.5px;height:2.5px;top:30%;left:80%;animation:tw 1.8s .9s ease-in-out infinite"></div>
+        <div class="sd" style="width:3px;height:3px;top:10%;left:85%;animation:tw2 4s 1.2s ease-in-out infinite;background:rgba(196,181,253,.9);filter:drop-shadow(0 0 3px rgba(167,139,250,.9))"></div>
+        <div class="sd" style="width:1.5px;height:1.5px;top:42%;left:68%;animation:tw 2s .6s ease-in-out infinite"></div>
+        <div class="sd" style="width:2px;height:2px;top:8%;left:50%;animation:tw2 3.5s 1.5s ease-in-out infinite"></div>
+        <div class="sstar" style="width:38px;top:28%;left:42%;transform:rotate(18deg);--sd:4.2s;--sl:.5s"></div>
+        <div class="hcard-title">Your Intuition Profile</div>
+        <div class="hcard-sub">Personal report from your natal chart</div>
+      </div>
+      <!-- Gauge card -->
+      <div class="hcard hcard-gauge">
+        <div class="hg-lbl">Intuition Level</div>
+        <svg width="90" height="56" viewBox="0 0 110 68" fill="none">
           <path d="M12 66 A43 43 0 0 1 98 66" stroke="#f0ebff" stroke-width="14" stroke-linecap="round"/>
           <path d="M12 66 A43 43 0 0 1 98 66" stroke="#e5deff" stroke-width="8" stroke-linecap="round"/>
           <path d="M12 66 A43 43 0 0 1 98 66" stroke="url(#gg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="135" stroke-dashoffset="30"/>
           <line x1="55" y1="66" x2="24" y2="24" stroke="rgba(217,119,6,.15)" stroke-width="5" stroke-linecap="round"/>
-          <line class="needle-line" x1="55" y1="66" x2="24" y2="24" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
+          <line class="needle-l" x1="55" y1="66" x2="24" y2="24" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="55" cy="66" r="6" fill="white" stroke="#e5deff" stroke-width="2"/>
           <circle cx="55" cy="66" r="3.5" fill="#d97706"/>
           <defs><linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs>
         </svg>
-      </div>
-      <div class="gauge-val">High</div>
-      <div class="gauge-desc">Reading people</div>
-      <div class="gauge-bars">
-        <div class="gb on" style="height:10px"></div>
-        <div class="gb on" style="height:14px"></div>
-        <div class="gb on" style="height:18px"></div>
-        <div class="gb on" style="height:22px"></div>
-        <div class="gb on" style="height:20px"></div>
-        <div class="gb" style="height:14px"></div>
-        <div class="gb" style="height:10px"></div>
+        <div class="hg-val">High</div>
+        <div class="hg-desc">Reading people</div>
+        <div class="hg-bars">
+          <div class="hgb on" style="height:9px"></div>
+          <div class="hgb on" style="height:13px"></div>
+          <div class="hgb on" style="height:17px"></div>
+          <div class="hgb on" style="height:20px"></div>
+          <div class="hgb on" style="height:18px"></div>
+          <div class="hgb" style="height:12px"></div>
+          <div class="hgb" style="height:9px"></div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- spacer so cards don't get clipped -->
-  <div style="height:48px"></div>
+<!-- STATS -->
+<div class="stats-band fade-up" style="animation-delay:.1s">
+  <div class="stat-item"><span class="n">200,000+</span><span class="l">App users worldwide</span></div>
+  <div class="stat-item"><span class="n">20,000+</span><span class="l">Personal consultations</span></div>
+  <div class="stat-item"><span class="n">5,000+</span><span class="l">Students trained</span></div>
+</div>
+
+<!-- DISCOVER -->
+<section class="section" id="discover">
+  <div class="sec-tag">What you'll discover</div>
+  <h2 class="sec-h">Your profile goes beyond<br><em>what flatters you.</em></h2>
+  <p class="sec-sub">Most people know they're "a little intuitive." This profile tells you exactly how, why — and what's silently blocking it.</p>
+  <div class="discover-grid">
+    <div class="ditem"><div class="icon">📡</div><div><h4>Your Intuition Level</h4><p>Exceptional, Strong, Moderate or Weak — with what that actually means for your daily life.</p></div></div>
+    <div class="ditem"><div class="icon">👁️</div><div><h4>How You Receive Information</h4><p>Visual flashes, emotional sensing, sudden downloads, or quiet inner voice — which channel is yours.</p></div></div>
+    <div class="ditem"><div class="icon">🌙</div><div><h4>Your Cosmic Strengths</h4><p>Which planetary positions in your natal chart amplify your intuitive ability — and why.</p></div></div>
+    <div class="ditem"><div class="icon">🌫️</div><div><h4>What Blocks Your Intuition</h4><p>Overthinking, self-doubt, emotional noise — the honest part most profiles skip entirely.</p></div></div>
+    <div class="ditem"><div class="icon">🧭</div><div><h4>Your Intuitive Archetype</h4><p>A named identity — like "The Intuitive Navigator" — that describes your natural way of knowing.</p></div></div>
+    <div class="ditem"><div class="icon">🛤️</div><div><h4>Where This Ability Fits</h4><p>Relationships, career, spiritual growth, creativity — where your intuition can guide you most.</p></div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PAIN SECTION -->
+<div class="pain-section">
+  <div class="pain-inner">
+    <div class="sec-tag">The honest truth</div>
+    <h2 class="pain-h">Most people sense they're intuitive.<br>Almost nobody knows <em style="font-style:italic">how</em>.</h2>
+    <div class="pain-list">
+      <div class="pain-item">You've felt something before it happened — but brushed it off as coincidence.</div>
+      <div class="pain-item">You second-guess yourself even when your gut was right, every single time.</div>
+      <div class="pain-item">You read people accurately but don't trust what you sense enough to act on it.</div>
+      <div class="pain-item">You know there's something there — you just don't have a language for it yet.</div>
+    </div>
+    <div class="pain-cta">"The problem isn't that your intuition is weak. It's that nobody ever mapped it for you."<br><small style="font-style:normal;font-size:14px;color:var(--muted);font-family:'DM Sans',sans-serif"> — Puneet Nahata</small></div>
+
+    <!-- COMPARISON -->
+    <div class="compare-wrap">
+      <div class="compare-label">The difference is not just insight. It is precision.</div>
+      <div class="compare-table">
+        <div class="ct-col">
+          <div class="ct-head generic">Generic Horoscope</div>
+          <div class="ct-rows">
+            <div class="ct-row generic"><span class="ic">✗</span> Same for everyone born that month</div>
+            <div class="ct-row generic"><span class="ic">✗</span> Tells you what you want to hear</div>
+            <div class="ct-row generic"><span class="ic">✗</span> No data from your actual birth chart</div>
+            <div class="ct-row generic"><span class="ic">✗</span> Cannot name your blockers honestly</div>
+            <div class="ct-row generic"><span class="ic">✗</span> Fades from memory in 10 minutes</div>
+          </div>
+        </div>
+        <div class="ct-col">
+          <div class="ct-head profile">Your Intuition Profile</div>
+          <div class="ct-rows">
+            <div class="ct-row profile"><span class="ic">✓</span> Built only from your birth date, time and place</div>
+            <div class="ct-row profile"><span class="ic">✓</span> Tells you what's true — including blockers</div>
+            <div class="ct-row profile"><span class="ic">✓</span> Based on your actual natal chart positions</div>
+            <div class="ct-row profile"><span class="ic">✓</span> Names exactly what's muting your signal</div>
+            <div class="ct-row profile"><span class="ic">✓</span> Sent to your WhatsApp for you to keep</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DARK BANNER -->
+<div class="dark-banner">
+  <!-- bg stars -->
+  <div class="bs" style="width:2px;height:2px;top:15%;left:10%;animation:btw 2.3s .3s ease-in-out infinite"></div>
+  <div class="bs" style="width:1.5px;height:1.5px;top:25%;left:85%;animation:btw 3s .7s ease-in-out infinite"></div>
+  <div class="bs" style="width:2.5px;height:2.5px;top:10%;left:60%;animation:btw 2.7s 1.1s ease-in-out infinite;background:rgba(196,181,253,.9)"></div>
+  <div class="bs" style="width:3px;height:3px;top:60%;left:20%;animation:btw 4s 1.8s ease-in-out infinite;background:rgba(251,191,36,.5);filter:drop-shadow(0 0 4px rgba(251,191,36,.4))"></div>
+  <div class="bs" style="width:1px;height:1px;top:40%;left:75%;animation:btw 2.1s .5s ease-in-out infinite"></div>
+  <div class="bs" style="width:1.5px;height:1.5px;top:70%;left:90%;animation:btw 3.2s 2s ease-in-out infinite"></div>
+
+  <div class="db-inner">
+    <div class="db-tag">20 years · One system that works</div>
+    <h2 class="db-h">Built on a framework that has<br><em>mapped 200,000 charts.</em></h2>
+    <p class="db-sub">Puneet Nahata spent 20 years building the Astro-Psychology system that powers this profile. This is not astrology-as-entertainment. It is astrology as a precision tool.</p>
+    <div class="db-stats">
+      <div class="dbs"><span class="n">20 yrs</span><span class="l">System development</span></div>
+      <div class="dbs"><span class="n">200K+</span><span class="l">Charts analyzed</span></div>
+      <div class="dbs"><span class="n">20K+</span><span class="l">Live consultations</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- INSIDE PROFILE -->
+<section class="section" id="inside">
+  <div class="sec-tag">What's inside</div>
+  <h2 class="sec-h">8 sections. All specific to you.</h2>
+  <p class="sec-sub">Every section of your profile is generated from your natal chart — not a generic template, not a sun-sign calculation.</p>
+  <div class="inside-grid">
+    <div class="ig-item"><div class="ig-num">1</div><div><h4>Birth Details &amp; Natal Chart</h4><p>Your chart rendered with all planetary positions and the three key signs.</p></div></div>
+    <div class="ig-item"><div class="ig-num">2</div><div><h4>Your Intuition Level</h4><p>A precise percentage reading — Exceptional, Strong, Moderate, or Weak.</p></div></div>
+    <div class="ig-item"><div class="ig-num">3</div><div><h4>How Your Intuition Speaks</h4><p>Which of the 4 intuitive channels you naturally receive through.</p></div></div>
+    <div class="ig-item"><div class="ig-num">4</div><div><h4>What Works in Your Favour</h4><p>Specific planetary positions that amplify your intuitive gifts.</p></div></div>
+    <div class="ig-item"><div class="ig-num">5</div><div><h4>What Clouds Your Inner Voice</h4><p>The honest blockers — named precisely so you can address them.</p></div></div>
+    <div class="ig-item"><div class="ig-num">6</div><div><h4>Your Path: Where It Fits</h4><p>Relationships, career, spiritual growth, creativity — your strongest area.</p></div></div>
+    <div class="ig-item"><div class="ig-num">7</div><div><h4>Your Intuitive Archetype</h4><p>A named identity that describes your natural way of knowing.</p></div></div>
+    <div class="ig-item"><div class="ig-num">8</div><div><h4>Personalized Recommendations</h4><p>Next steps curated for your chart — not a general suggestion.</p></div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- NO HIDING -->
+<section class="section-sm">
+  <div class="sec-tag">No hiding scenario</div>
+  <h2 class="sec-h" style="margin-bottom:8px">There is no version of this<br>where you don't learn something.</h2>
+  <p class="sec-sub" style="margin-bottom:0">Whether your intuition is high or still developing — the profile tells you something true and useful.</p>
+  <div class="nohide-grid">
+    <div class="nh-card dark">
+      <div class="nh-label">If your score is high</div>
+      <div class="nh-h">You'll finally understand why you always sensed it first.</div>
+      <p class="nh-p">And you'll see what's been quietly muting the signal — so you can stop second-guessing and start acting on it.</p>
+    </div>
+    <div class="nh-card">
+      <div class="nh-label">If your score is developing</div>
+      <div class="nh-h">You'll know exactly what to build and where to begin.</div>
+      <p class="nh-p">The profile names your blockers and shows you the specific channel through which your intuition is trying to reach you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<div class="bio-section">
+  <div class="bio-inner">
+    <div class="bio-img-col">
+      <img class="bio-img" src="uploads/Hero.png" alt="Puneet Nahata" onerror="this.style.opacity='.3'">
+      <div class="bio-name">Puneet Nahata</div>
+      <div class="bio-title">Creator · Astro Coach · Astro-Psychology System</div>
+    </div>
+    <div class="bio-text">
+      <h2>The person who built this<br><em>spent 20 years mapping intuition.</em></h2>
+      <p class="bio-para">Puneet Nahata didn't set out to build an app. He set out to find out why some people seem to know things before they happen — and others, despite genuine sensitivity, never learn to trust what they feel.</p>
+      <p class="bio-para">The answer, he found, was in the natal chart. Specifically in a set of planetary configurations that govern how a person receives, processes, and acts on non-rational information.</p>
+      <p class="bio-para">Over 20 years and 20,000+ personal consultations, he built the Astro-Psychology framework — a structured system for reading intuition from the chart. The Intuition Profile is the most accessible version of that work. Free. Instant. Honest.</p>
+      <div class="bio-tags">
+        <span class="bio-tag">20,000+ consultations</span>
+        <span class="bio-tag">5,000+ students</span>
+        <span class="bio-tag">200K+ app users</span>
+        <span class="bio-tag">20 years of research</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="section-sm">
+  <div class="sec-tag">What people say</div>
+  <h2 class="sec-h" style="margin-bottom:8px">Real profiles. Real clarity.</h2>
+  <div class="testi-grid">
+    <div class="tc">
+      <div class="tc-top">
+        <div class="tc-av" style="background:linear-gradient(135deg,#6366f1,#312e81)">S</div>
+        <div><div class="tc-name">Sneha R.</div><div class="tc-meta">Mumbai</div></div>
+        <div class="tc-stars">★★★★★</div>
+      </div>
+      <p class="tc-body">"I was skeptical but the profile was <strong>shockingly accurate</strong>. It described exactly how I sense things before they happen — and named why I keep second-guessing myself."</p>
+    </div>
+    <div class="tc">
+      <div class="tc-top">
+        <div class="tc-av" style="background:linear-gradient(135deg,#d97706,#92400e)">A</div>
+        <div><div class="tc-name">Arjun K.</div><div class="tc-meta">Bangalore</div></div>
+        <div class="tc-stars">★★★★★</div>
+      </div>
+      <p class="tc-body">"It told me the uncomfortable truth — <strong>I was blocking my intuition with overthinking.</strong> That one sentence changed how I approach decisions."</p>
+    </div>
+    <div class="tc">
+      <div class="tc-top">
+        <div class="tc-av" style="background:linear-gradient(135deg,#059669,#064e3b)">P</div>
+        <div><div class="tc-name">Priya M.</div><div class="tc-meta">Delhi</div></div>
+        <div class="tc-stars">★★★★★</div>
+      </div>
+      <p class="tc-body">"Even as someone who studies astrology, the depth of Puneet's framework surprised me. <strong>This is not a generic horoscope</strong> — it's genuinely mine."</p>
+    </div>
+  </div>
 </section>
 
 <!-- FORM -->
-<section class="form-wrap" id="form">
-  <div class="form-card">
-    <div class="form-title">Get yours in 60 seconds</div>
-    <div class="form-sub">Fill in your birth details — your chart does the rest.</div>
+<section class="form-section" id="form">
+  <div class="fs-inner">
+    <div class="fs-tag">Get yours free · Right now</div>
+    <h2 class="fs-h">Read your chart.<br><em>Know your intuition.</em></h2>
+    <p class="fs-sub">Enter your birth details below — your profile generates in 60 seconds and is sent to your WhatsApp.</p>
 
-    <form id="profileForm" novalidate>
-      <div class="field">
-        <input type="text" name="name" id="fname" placeholder="Full name" autocomplete="name">
-      </div>
-
-      <div class="row2">
+    <div class="form-card">
+      <form id="profileForm" novalidate>
         <div class="field">
-          <input type="date" name="dob" id="fdob" placeholder="Date of birth">
+          <input type="text" name="name" id="fname" placeholder="Full name" autocomplete="name">
         </div>
-        <div class="time-col">
-          <input type="time" name="tob" id="ftob">
-          <label class="idk-lbl" for="fidk">
-            <input type="checkbox" id="fidk" onchange="document.getElementById('ftob').disabled=this.checked">
-            I don't know my birth time
-          </label>
-        </div>
-      </div>
-
-      <div class="field">
-        <input type="text" name="pob" id="fpob" placeholder="Place of birth" autocomplete="off">
-      </div>
-
-      <div class="row2">
-        <div class="field">
-          <input type="tel" name="wa" id="fwa" placeholder="WhatsApp number" autocomplete="tel">
+        <div class="row2">
+          <div class="field">
+            <input type="date" name="dob" id="fdob">
+          </div>
+          <div class="tcol">
+            <input type="time" name="tob" id="ftob">
+            <label class="idk" for="fidk">
+              <input type="checkbox" id="fidk" onchange="document.getElementById('ftob').disabled=this.checked">
+              I don't know my birth time
+            </label>
+          </div>
         </div>
         <div class="field">
-          <input type="email" name="email" id="femail" placeholder="Email address" autocomplete="email">
+          <input type="text" name="pob" id="fpob" placeholder="Place of birth" autocomplete="off">
         </div>
+        <div class="row2">
+          <div class="field">
+            <input type="tel" name="wa" id="fwa" placeholder="WhatsApp number" autocomplete="tel">
+          </div>
+          <div class="field">
+            <input type="email" name="email" id="femail" placeholder="Email address" autocomplete="email">
+          </div>
+        </div>
+        <p class="astro-q">Do you already practice astrology?</p>
+        <div class="pills">
+          <input type="radio" name="astro" id="a-no" value="no" checked>
+          <label for="a-no">No</label>
+          <input type="radio" name="astro" id="a-learn" value="learning">
+          <label for="a-learn">Learning</label>
+          <input type="radio" name="astro" id="a-yes" value="yes">
+          <label for="a-yes">Yes, I practice</label>
+        </div>
+        <button type="submit" class="btn-submit">See My Intuition Profile &nbsp;→</button>
+      </form>
+      <div class="form-meta">
+        <span>Free</span><span class="sep">·</span>
+        <span>Instant</span><span class="sep">·</span>
+        <span>Sent to WhatsApp</span><span class="sep">·</span>
+        <span>No spam, ever</span>
       </div>
-
-      <p class="astro-q">Do you already practice astrology?</p>
-      <div class="pills">
-        <input type="radio" name="astro" id="a-no" value="no" checked>
-        <label for="a-no">No</label>
-        <input type="radio" name="astro" id="a-learn" value="learning">
-        <label for="a-learn">Learning</label>
-        <input type="radio" name="astro" id="a-yes" value="yes">
-        <label for="a-yes">Yes, I practice</label>
-      </div>
-
-      <button type="submit" class="btn-cta">See yours in 60 seconds &nbsp;→</button>
-    </form>
-
-    <div class="form-meta">
-      <span>Free</span><span class="sep">·</span>
-      <span>Instant</span><span class="sep">·</span>
-      <span>Copy sent to your WhatsApp</span>
     </div>
   </div>
 </section>
 
-<!-- HONEST -->
-<div class="honest">
-  It tells you the honest part too — <strong>what blocks your intuition</strong>, not only what flatters you.
+<!-- FOOTER QUOTE -->
+<div class="footer-quote">
+  "Your chart is not your ceiling."<br>
+  <span style="font-size:13px;font-style:normal;font-family:'DM Sans',sans-serif;color:var(--light);display:block;margin-top:10px">— Puneet Nahata &nbsp;🌙</span>
 </div>
-
-<!-- AUTHORITY -->
-<section class="authority">
-  <div class="puneet-row">
-    <img class="puneet-img" src="uploads/Hero.png" alt="Puneet Nahata"
-      onerror="this.style.display='none'">
-    <div class="puneet-info">
-      <h3>Puneet Nahata</h3>
-      <p>Creator of Astro-Psychology. 20 years building the system this report reads your chart with.</p>
-    </div>
-  </div>
-  <div class="stats">
-    <div class="stat"><span class="n">20K+</span><span class="l">consultations</span></div>
-    <div class="stat"><span class="n">5K+</span><span class="l">students</span></div>
-    <div class="stat"><span class="n">200K+</span><span class="l">app users</span></div>
-  </div>
-  <div class="app-proof">
-    <p><strong>200,000+ people</strong> use the system this report is built on — the Astro Coach app.</p>
-    <div class="app-btns">
-      <a class="app-btn" href="#">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        App Store
-      </a>
-      <a class="app-btn" href="#">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.2.8.22 1.19.04L15.55 12 4.37.2C3.98.02 3.55.04 3.18.24 2.48.65 2 1.43 2 2.28v19.44c0 .85.48 1.63 1.18 2.04z"/></svg>
-        Google Play
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how">
-  <h2 class="sec-head">How it works</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div><h4>Enter your birth details</h4><p>Name, date, time, and place. Don't know your time? That's fine — we still generate your profile.</p></div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div><h4>We read your natal chart</h4><p>Puneet's 20-year system analyses your planetary positions and intuitive indicators.</p></div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div><h4>Get your Intuition Profile</h4><p>Receive a personal report — your level, strengths, blockers — sent to your WhatsApp instantly.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testi">
-  <h2 class="sec-head">What people say</h2>
-  <div class="testi-card">
-    <div class="testi-top">
-      <div class="tav" style="background:linear-gradient(135deg,#6366f1,#312e81)">S</div>
-      <div><div class="tname">Sneha R.</div><div class="tmeta">Mumbai · App user</div></div>
-      <div class="tstars">★★★★★</div>
-    </div>
-    <p class="tbody">"I was skeptical but the profile was <strong>shockingly accurate</strong>. It described exactly how I sense things before they happen."</p>
-  </div>
-  <div class="testi-card">
-    <div class="testi-top">
-      <div class="tav" style="background:linear-gradient(135deg,#d97706,#92400e)">A</div>
-      <div><div class="tname">Arjun K.</div><div class="tmeta">Bangalore · Student</div></div>
-      <div class="tstars">★★★★★</div>
-    </div>
-    <p class="tbody">"It told me the uncomfortable truth — <strong>I was blocking my intuition with overthinking</strong>. That one insight changed how I make decisions."</p>
-  </div>
-</section>
 
 <!-- FOOTER -->
-<div class="footer">
-  <p class="privacy">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-    Your details are used only to build your chart. No spam, ever.
-  </p>
-  <p class="fquote">
-    "Your intuition is not something you need to create.<br>It is something you learn to hear."<br>
-    <span style="font-style:normal;font-size:13px;font-family:'DM Sans',sans-serif;display:block;margin-top:10px">— Puneet Nahata</span>
-  </p>
-</div>
+<footer>
+  <div class="footer-logo">🌙 Astro Coach</div>
+  <div class="footer-copy">© 2025 Puneet Nahata · Astro-Psychology System</div>
+</footer>
 
 <!-- STICKY -->
-<div class="sticky" id="stickyCta">
-  <a href="#form">Get my free profile &nbsp;↑</a>
+<div class="sticky-cta" id="stickyCta">
+  <a href="#form">Get My Free Intuition Profile &nbsp;↑</a>
 </div>
 
-<!-- LOADING OVERLAY -->
-<div class="loading-overlay" id="loader">
-  <div class="spinner"></div>
-  <div class="loading-text">Reading your natal chart…</div>
-  <div class="loading-sub">This takes just a moment ✦</div>
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="spin"></div>
+  <div class="loader-h">Reading your natal chart…</div>
+  <div class="loader-s">Mapping your intuition profile ✦</div>
 </div>
 
 <script>
-// Sticky CTA
+// Sticky
 const sticky = document.getElementById('stickyCta');
 const formEl = document.getElementById('form');
 new IntersectionObserver(([e]) => sticky.classList.toggle('show', !e.isIntersecting), {threshold:.1}).observe(formEl);
 
-// Form submit → pass data to result page
+// Submit
 document.getElementById('profileForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const name  = document.getElementById('fname').value.trim();
@@ -651,30 +898,20 @@ document.getElementById('profileForm').addEventListener('submit', function(e) {
   const email = document.getElementById('femail').value.trim();
   const astro = document.querySelector('input[name="astro"]:checked').value;
 
-  // basic validation
   let ok = true;
-  [['fname', name], ['fdob', dob], ['fpob', pob], ['fwa', wa], ['femail', email]].forEach(([id, val]) => {
+  [['fname',name],['fdob',dob],['fpob',pob],['fwa',wa],['femail',email]].forEach(([id,val]) => {
     const el = document.getElementById(id);
     if (!val) { el.classList.add('err'); ok = false; }
     else el.classList.remove('err');
   });
   if (!ok) return;
 
-  // show loader
   document.getElementById('loader').classList.add('show');
-
-  // build URL params
-  const params = new URLSearchParams({ name, dob, tob, pob, wa, email, astro });
-
-  setTimeout(() => {
-    window.location.href = 'intuition-result.html?' + params.toString();
-  }, 2200);
+  const params = new URLSearchParams({name,dob,tob,pob,wa,email,astro});
+  setTimeout(() => { window.location.href = 'intuition-result.html?' + params; }, 2200);
 });
 
-// remove err on input
-document.querySelectorAll('.field input').forEach(inp => {
-  inp.addEventListener('input', () => inp.classList.remove('err'));
-});
+document.querySelectorAll('.field input').forEach(i => i.addEventListener('input', () => i.classList.remove('err')));
 </script>
 </body>
 </html>
